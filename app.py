@@ -31,13 +31,16 @@ engine = WageCalculationEngine()
 # --- Parity Groups Configuration ---
 import json as _json
 PARITY_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'parity_groups.json')
+print(f"📋 Parity config path: {PARITY_FILE}, exists: {os.path.exists(PARITY_FILE)}")
 
 def load_parity_groups():
     """Load parity group config from JSON file."""
     if os.path.exists(PARITY_FILE):
         with open(PARITY_FILE, 'r') as f:
             data = _json.load(f)
-            return data.get('parity_groups', [])
+            groups = data.get('parity_groups', [])
+            return groups
+    print(f"⚠️ Parity file not found: {PARITY_FILE}")
     return []
 
 def get_parity_group_for_site(site_code, entity=None):
@@ -835,7 +838,14 @@ async def upload_wage_cards(file: UploadFile = File(...), password: str = Form("
     # --- PARITY ENFORCEMENT ---
     # After all cards are imported, enforce Gross parity across parity groups
     all_for_parity = db.list_wage_cards()
-    parity_updated = enforce_parity(all_for_parity, engine, get_ptax_slabs, get_lwf_config)
+    try:
+        parity_updated = enforce_parity(all_for_parity, engine, get_ptax_slabs, get_lwf_config)
+        print(f"✅ Parity enforcement: {parity_updated} cards adjusted")
+    except Exception as pe:
+        print(f"❌ Parity enforcement error: {pe}")
+        import traceback
+        traceback.print_exc()
+        parity_updated = 0
 
     # Generate Associate PT cards
     all_current = db.list_wage_cards()
@@ -882,6 +892,49 @@ def api_enforce_parity(password: str = Form("")):
             db.put_wage_card(pc, skip_save=True)
         db.save()
     return {"status": "completed", "parity_adjustments": parity_updated}
+
+@app.get("/api/parity-status")
+def get_parity_status():
+    """Check current parity status — shows if sites in parity groups have matching components."""
+    groups = load_parity_groups()
+    all_cards = db.list_wage_cards()
+    result = []
+    for group in groups:
+        group_sites = [s.upper() for s in group.get('sites', [])]
+        group_entity = group.get('entity', '').upper() if group.get('entity') else None
+        group_cards = [c for c in all_cards 
+                       if c.get('site_codes', '').upper() in group_sites 
+                       and not c.get('is_pt')
+                       and (not group_entity or c.get('entity', '').upper() == group_entity)]
+        
+        # Check Associate 0Yr
+        assoc_0yr = [c for c in group_cards if c.get('short_bt') == 'Associate' and c.get('tenure_years') == 0]
+        grosses = list(set(c.get('gross', 0) for c in assoc_0yr))
+        ltas = list(set(c.get('lta', 0) for c in assoc_0yr))
+        
+        sites_detail = []
+        for c in sorted(assoc_0yr, key=lambda x: x.get('site_codes', '')):
+            sites_detail.append({
+                "site": c.get('site_codes', ''),
+                "mw_zone": c.get('mw_zone', ''),
+                "mw": c.get('minimum_wage', 0),
+                "gross": c.get('gross', 0),
+                "basic": c.get('basic', 0),
+                "flexi": c.get('flexi', 0),
+                "lta": c.get('lta', 0),
+                "hra": c.get('hra', 0),
+                "ot": c.get('per_hour_ot_total', 0),
+            })
+        
+        result.append({
+            "group_name": group.get('name', ''),
+            "parity_ok": len(grosses) <= 1 and len(ltas) <= 1,
+            "unique_grosses": grosses,
+            "unique_ltas": ltas,
+            "sites": sites_detail,
+        })
+    
+    return {"parity_file_exists": os.path.exists(PARITY_FILE), "parity_file_path": PARITY_FILE, "groups": result}
 
 @app.post("/api/change-password")
 def change_password(current_password: str = Form(""), new_password: str = Form("")):
@@ -1326,7 +1379,14 @@ async def upload_revision(file: UploadFile = File(...), password: str = Form("")
     # --- PARITY ENFORCEMENT ---
     # After individual MW revisions, enforce Gross parity across parity groups
     all_cards_for_parity = db.list_wage_cards()
-    parity_updated = enforce_parity(all_cards_for_parity, engine, get_ptax_slabs, get_lwf_config)
+    try:
+        parity_updated = enforce_parity(all_cards_for_parity, engine, get_ptax_slabs, get_lwf_config)
+        print(f"✅ MW Revision parity enforcement: {parity_updated} cards adjusted")
+    except Exception as pe:
+        print(f"❌ MW Revision parity error: {pe}")
+        import traceback
+        traceback.print_exc()
+        parity_updated = 0
 
     # Regenerate PT cards after MW revision
     # Remove old PT cards first
