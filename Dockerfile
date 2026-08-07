@@ -9,6 +9,7 @@ RUN pip install --no-cache-dir fastapi uvicorn boto3 openpyxl python-multipart p
 COPY app.py .
 COPY frontend_html.py .
 COPY alfa_pt_lwf.json .
+COPY parity_groups.json .
 COPY backend/ backend/
 
 # Create data and uploads directories
