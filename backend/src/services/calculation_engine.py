@@ -290,6 +290,29 @@ class WageCalculationEngine:
         output.mw_compliant = output.included_wages >= wage_input.minimum_wage
         output.mw_gap = max(0, wage_input.minimum_wage - output.included_wages)
 
+        # --- Round all monetary values to whole numbers (no decimals) ---
+        output.basic = round(output.basic)
+        output.flexi = round(output.flexi)
+        output.lta = round(output.lta)
+        output.hra = round(output.hra)
+        output.conveyance = round(output.conveyance)
+        output.gross = round(output.gross)
+        output.included_wages = round(output.included_wages)
+        output.per_hour_ot_total = round(output.per_hour_ot_total)
+        output.per_hour_ot_included = round(output.per_hour_ot_included)
+        output.per_hour_ot_balance = round(output.per_hour_ot_balance)
+        output.pf_employee = round(output.pf_employee)
+        output.esic_employee = round(output.esic_employee)
+        output.gross_deductions = round(output.gross_deductions)
+        output.net_salary = round(output.net_salary)
+        output.pf_employer = round(output.pf_employer)
+        output.esic_employer = round(output.esic_employer)
+        output.ctc = round(output.ctc)
+        output.ot_default = round(output.ot_default)
+        output.total_remuneration = round(output.total_remuneration)
+        output.excluded_wages = round(output.excluded_wages)
+        output.cap_50_amount = round(output.cap_50_amount)
+
         return output
 
     def auto_split_for_mw(
