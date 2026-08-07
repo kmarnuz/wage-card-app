@@ -558,13 +558,16 @@ def generate_pt_cards(all_cards, engine, get_ptax_slabs, get_lwf_config):
             continue
 
         # --- IXCE PT GROSS HARDCODE (smart bypass) ---
-        # Add fixed amounts per tenure year to the formula-derived PT Gross
-        # Bypass if the base formula Gross (without addition) already exceeds the hardcoded value
+        # Hard-coded PT Gross values for IXCE. If formula-derived PT Gross exceeds
+        # the hardcoded value, bypass the hardcode and use formula instead.
         if site == 'IXCE' and entity == 'AMZL':
-            ixce_additions = {0: 3, 1: 9, 2: 9, 3: 8, 4: 10}
-            addition = ixce_additions.get(tenure, 0)
-            if addition > 0:
-                pt_gross = pt_gross + addition
+            ixce_pt_gross_hardcode = {0: 11071, 1: 11499, 2: 11922, 3: 12133, 4: 12346}
+            hardcoded_gross = ixce_pt_gross_hardcode.get(tenure)
+            if hardcoded_gross:
+                if pt_gross > hardcoded_gross:
+                    pass  # Formula exceeds hardcode — use formula (smart bypass)
+                else:
+                    pt_gross = hardcoded_gross  # Use hardcoded value
         
         # Now split and calculate the PT card
         mw = card.get('minimum_wage', 0)
