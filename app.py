@@ -1734,6 +1734,24 @@ def export_alfa_rate_card():
         cell.fill = hdr_fill
         cell.border = THIN_BORDER
 
+    # Load ALFA hardcode overrides
+    alfa_hardcode_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'alfa_hardcode.json')
+    alfa_hardcode = {}
+    if os.path.exists(alfa_hardcode_file):
+        with open(alfa_hardcode_file, 'r') as f:
+            alfa_hardcode = json.load(f)
+
+    # Build lookup for hardcoded net pay: (site_code, attendance_code) -> net_pay
+    hardcoded_net = {}
+    for entry in alfa_hardcode.get('hardcoded_net_pay', []):
+        key = (entry['site_code'].upper(), entry['attendance_code'].upper())
+        hardcoded_net[key] = entry['net_pay']
+
+    # Build lookup for ROUND PF sites: site_code -> attendance_codes list
+    round_pf_sites = {}
+    for entry in alfa_hardcode.get('round_pf_sites', []):
+        round_pf_sites[entry['site_code'].upper()] = [c.upper() for c in entry.get('attendance_codes', [])]
+
     # Write data with formulas
     for idx, card in enumerate(sorted(assoc_cards, key=lambda x: (x.get('state',''), x.get('city',''))), 1):
         r = idx + 1  # row number
@@ -1741,14 +1759,27 @@ def export_alfa_rate_card():
 
         state = card.get('state', '')
         city = card.get('city', '')
+        site_code = card.get('site_codes', '')
+        entity = card.get('entity', 'AMZL')
         pt_key = f"{state.upper()}|{city.upper()}"
         pt_data = alfa_pt_lwf.get(pt_key, {})
 
+        # Determine if this site uses ROUND for PF (instead of ROUNDUP)
+        use_round_pf = site_code.upper() in round_pf_sites
+        pf_func = "ROUND" if use_round_pf else "ROUNDUP"
+
+        # Determine if INFC + MH/GJ (or HMH4) for Holiday Pay formula override
+        # Uses fixed 45 weekly hrs: PH10 = ((B+F+L)*12)/(52*45)*2*9, PH5 = *2*4
+        is_holiday_override = (
+            (entity.upper() == 'INFC' and state.upper() in ('MH', 'GJ', 'MAHARASHTRA', 'GUJARAT'))
+            or site_code.upper() == 'HMH4'
+        )
+
         # Static values (A-N)
-        ws.cell(row=r, column=1, value=card.get('entity', 'AMZL'))
+        ws.cell(row=r, column=1, value=entity)
         ws.cell(row=r, column=2, value=state)
         ws.cell(row=r, column=3, value=city)
-        ws.cell(row=r, column=4, value=card.get('site_codes', ''))
+        ws.cell(row=r, column=4, value=site_code)
         ws.cell(row=r, column=5, value=card.get('daily_hours', 8))
         ws.cell(row=r, column=6, value=card.get('weekly_hours', 40))
         ws.cell(row=r, column=7, value="Y" if card.get('weekly_hours', 40) == 40 else "N")
@@ -1775,12 +1806,18 @@ def export_alfa_rate_card():
         ws.cell(row=r, column=24, value=f"=T{rs}+U{rs}+V{rs}+W{rs}")  # P10_Gross
         ws.cell(row=r, column=25, value=f'=ROUND(IF(G{rs}="Y",((O{rs}+P{rs}+Q{rs})*12/(52*F{rs}))*2,0),0)')  # P10_OT
         ws.cell(row=r, column=26, value=f"=X{rs}+Y{rs}")  # P10_Total
-        ws.cell(row=r, column=27, value=f"=ROUNDUP(T{rs}*12%,0)")  # P10_PF
+        ws.cell(row=r, column=27, value=f"={pf_func}(T{rs}*12%,0)")  # P10_PF (ROUND or ROUNDUP)
         ws.cell(row=r, column=28, value=f"=ROUNDUP(IF((O{rs}+P{rs}+Q{rs})>21000,0,(T{rs}+U{rs}+V{rs})*0.75%),0)")  # P10_ESIC
         ws.cell(row=r, column=29, value=pt_data.get('pt_p10', 0))  # P10_PT
         ws.cell(row=r, column=30, value=pt_data.get('lwf_p10', 0))  # P10_LWF
         ws.cell(row=r, column=31, value=f"=AA{rs}+AB{rs}+AC{rs}+AD{rs}")  # P10_TotDed
-        ws.cell(row=r, column=32, value=f"=Z{rs}-AE{rs}")  # P10_Net
+
+        # P10_Net - check for hardcoded override
+        p10_hardcode = hardcoded_net.get((site_code.upper(), 'P10'))
+        if p10_hardcode:
+            ws.cell(row=r, column=32, value=p10_hardcode)  # Hard-coded P10 Net
+        else:
+            ws.cell(row=r, column=32, value=f"=Z{rs}-AE{rs}")  # P10_Net formula
 
         # P5 (AG-AQ) - formulas
         ws.cell(row=r, column=33, value=f"=ROUND(O{rs}/22/E{rs}*4,0)")  # P5_Basic
@@ -1788,12 +1825,18 @@ def export_alfa_rate_card():
         ws.cell(row=r, column=35, value=f"=ROUND(Q{rs}/22/E{rs}*4,0)")  # P5_LTA
         ws.cell(row=r, column=36, value=f"=ROUND(R{rs}/22/E{rs}*4,0)")  # P5_HRA
         ws.cell(row=r, column=37, value=f"=AG{rs}+AH{rs}+AI{rs}+AJ{rs}")  # P5_Gross
-        ws.cell(row=r, column=38, value=f"=ROUNDUP(AG{rs}*12%,0)")  # P5_PF
+        ws.cell(row=r, column=38, value=f"={pf_func}(AG{rs}*12%,0)")  # P5_PF (ROUND or ROUNDUP)
         ws.cell(row=r, column=39, value=f"=ROUNDUP(IF((O{rs}+P{rs}+Q{rs})>21000,0,(AG{rs}+AH{rs}+AI{rs})*0.75%),0)")  # P5_ESIC
         ws.cell(row=r, column=40, value=pt_data.get('pt_p5', 0))  # P5_PT
         ws.cell(row=r, column=41, value=pt_data.get('lwf_p5', 0))  # P5_LWF
         ws.cell(row=r, column=42, value=f"=AL{rs}+AM{rs}+AN{rs}+AO{rs}")  # P5_TotDed
-        ws.cell(row=r, column=43, value=f"=AK{rs}-AP{rs}")  # P5_Net
+
+        # P5_Net - check for hardcoded override
+        p5_hardcode = hardcoded_net.get((site_code.upper(), 'P5'))
+        if p5_hardcode:
+            ws.cell(row=r, column=43, value=p5_hardcode)  # Hard-coded P5 Net
+        else:
+            ws.cell(row=r, column=43, value=f"=AK{rs}-AP{rs}")  # P5_Net formula
 
         # P8 (AR-BB) - formulas
         ws.cell(row=r, column=44, value=f"=ROUND(O{rs}/22/E{rs}*8,0)")  # P8_Basic
@@ -1801,12 +1844,18 @@ def export_alfa_rate_card():
         ws.cell(row=r, column=46, value=f"=ROUND(Q{rs}/22/E{rs}*8,0)")  # P8_LTA
         ws.cell(row=r, column=47, value=f"=ROUND(R{rs}/22/E{rs}*8,0)")  # P8_HRA
         ws.cell(row=r, column=48, value=f"=AR{rs}+AS{rs}+AT{rs}+AU{rs}")  # P8_Gross
-        ws.cell(row=r, column=49, value=f"=ROUNDUP(AR{rs}*12%,0)")  # P8_PF
+        ws.cell(row=r, column=49, value=f"={pf_func}(AR{rs}*12%,0)")  # P8_PF (ROUND or ROUNDUP)
         ws.cell(row=r, column=50, value=f"=ROUNDUP(IF((O{rs}+P{rs}+Q{rs})>21000,0,(AR{rs}+AS{rs}+AT{rs})*0.75%),0)")  # P8_ESIC
         ws.cell(row=r, column=51, value=pt_data.get('pt_p8', 0))  # P8_PT
         ws.cell(row=r, column=52, value=pt_data.get('lwf_p8', 0))  # P8_LWF
         ws.cell(row=r, column=53, value=f"=AW{rs}+AX{rs}+AY{rs}+AZ{rs}")  # P8_TotDed
-        ws.cell(row=r, column=54, value=f"=AV{rs}-BA{rs}")  # P8_Net
+
+        # P8_Net - check for hardcoded override
+        p8_hardcode = hardcoded_net.get((site_code.upper(), 'P8'))
+        if p8_hardcode:
+            ws.cell(row=r, column=54, value=p8_hardcode)  # Hard-coded P8 Net
+        else:
+            ws.cell(row=r, column=54, value=f"=AV{rs}-BA{rs}")  # P8_Net formula
 
         # Holiday (BC-BK) - formulas
         ws.cell(row=r, column=55, value=f"=ROUNDUP(IF((O{rs}+P{rs}+Q{rs})>21000,0,(Z{rs}+X{rs})*0.75%),0)")  # PH10_ESIC
@@ -1815,9 +1864,15 @@ def export_alfa_rate_card():
         ws.cell(row=r, column=58, value=f"=AK{rs}+BJ{rs}-AL{rs}-AC{rs}-AD{rs}-BE{rs}")  # PH5_Net
         ws.cell(row=r, column=59, value=f"=ROUNDUP(IF((O{rs}+P{rs}+Q{rs})>21000,0,(AV{rs}+AV{rs})*0.75%),0)")  # PH8_ESIC
         ws.cell(row=r, column=60, value=f"=AV{rs}+BK{rs}-AW{rs}-AY{rs}-AZ{rs}-BG{rs}")  # PH8_Net
-        ws.cell(row=r, column=61, value=f"=ROUND(((O{rs}+P{rs}+Q{rs})*12/(52*F{rs}))*E{rs},0)")  # PH10
-        ws.cell(row=r, column=62, value=f"=ROUND(((O{rs}+P{rs}+Q{rs})*12/(52*F{rs}))*4,0)")  # PH5
-        ws.cell(row=r, column=63, value=f"=BJ{rs}*2")  # PH8
+
+        # PH10, PH5, PH8 - INFC MH/GJ + HMH4 uses fixed 45 weekly hrs formula
+        if is_holiday_override:
+            ws.cell(row=r, column=61, value=f"=ROUND(((O{rs}+P{rs}+Q{rs})*12)/(52*45)*2*9,0)")  # PH10
+            ws.cell(row=r, column=62, value=f"=ROUND(((O{rs}+P{rs}+Q{rs})*12)/(52*45)*2*4,0)")  # PH5
+        else:
+            ws.cell(row=r, column=61, value=f"=ROUND(((O{rs}+P{rs}+Q{rs})*12/(52*F{rs}))*E{rs},0)")  # PH10
+            ws.cell(row=r, column=62, value=f"=ROUND(((O{rs}+P{rs}+Q{rs})*12/(52*F{rs}))*4,0)")  # PH5
+        ws.cell(row=r, column=63, value=f"=BJ{rs}*2")  # PH8 = PH5 * 2
 
         # Apply colors and borders to this row
         for col in range(1, 64):
@@ -1829,6 +1884,48 @@ def export_alfa_rate_card():
                 cell.fill = FILL_GROSS
             elif col in COMP_COLS:
                 cell.fill = FILL_COMP
+
+    # --- Remarks/Reference Sheet ---
+    ws_remarks = wb.create_sheet("Remarks & Reference")
+    remarks = [
+        "ALFA RATE CARD — REMARKS & REFERENCE",
+        "=" * 60,
+        "",
+        "1. HARD-CODED NET PAY SITES:",
+        "   The following sites have P10/P5/P8 Net Pay hard-coded (not formula-driven):",
+        "   - UDL6 (UFF, Noida): P10 Net = 935",
+        "   - LKOI, IXDD, KNUD, KNUO, AGRD, GKPL, MREE, VNSD, LKOA, LKOD (AMZL): P10 Net = 861",
+        "   - LKO1 (INFC, Lucknow): P10 Net = 861",
+        "   - LKOO (ATS, Lucknow): P10 Net = 861",
+        "   - NCRJ, NCT3, NCT8, NZMF, NZMM (AMZL, Ghaziabad/Noida): P10 Net = 935",
+        "",
+        "2. ROUND PF SITES (instead of ROUNDUP):",
+        "   - FHYE (UFF, Hyderabad): P10 Net = 1001, P5 Net = 386, P8 Net = 775",
+        "   - SBLZ, UBL6, UBL9, UBL5, SBLY (UFF, Bangalore): P10 Net = 1291",
+        "",
+        "3. HOLIDAY PAY FORMULA OVERRIDE (INFC MH/GJ + HMH4):",
+        "   Standard formula: PH10 = ((Basic_P+Flexi_P+LTA_P)*12/(52*WeeklyHrs))*DailyHrs",
+        "   Override formula:  PH10 = ((Basic_P+Flexi_P+LTA_P)*12)/(52*45)*2*9",
+        "                      PH5  = ((Basic_P+Flexi_P+LTA_P)*12)/(52*45)*2*4",
+        "                      PH8  = PH5 * 2",
+        "   Applies to: INFC sites in MH & GJ states + HMH4 (GSF HUB)",
+        "",
+        "4. PREMIUM: 15% applied to all components (Basic, Flexi, LTA, HRA)",
+        "",
+        "5. PF FORMULA: ROUNDUP(Basic*12%, 0) for most sites, ROUND for sites listed in #2",
+        "",
+        "6. ESIC: ROUNDUP applied; IF(Included > 21000, 0, (components)*0.75%)",
+        "",
+        "7. OT: Applicable only for Mandatory OT = Y (40hr sites)",
+        "   Formula: ROUND(((Basic_P+Flexi_P+LTA_P)*12/(52*WeeklyHrs))*2, 0)",
+        "",
+        "=" * 60,
+        f"Generated: {datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC')}",
+        "Developed by: Ravi Kumar (Kmarnuz) | Sr. SME CTK MHLS",
+    ]
+    for i, line in enumerate(remarks, 1):
+        ws_remarks.cell(row=i, column=1, value=line)
+    ws_remarks.column_dimensions['A'].width = 80
 
     # Column widths
     for col in range(1, 64):
