@@ -1094,6 +1094,96 @@ Single Tab "Wage Card Depository":
   Short BT | MW Category | MW Zone | Minimum Wage | MW Effective Date |
   0 Year | 1 Year | 2 Year | 3 Year | 4 Year |
   Old OT 0-4Yr | Old Hol 0-4Yr
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MW REVISION LOGIC
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+When new MW is uploaded via MW Revision:
+  If New MW <= 0Yr Gross : Keep Gross unchanged, only re-split components
+  If New MW > 0Yr Gross  : Gap = New MW - 0Yr Gross
+    All tenure years increased by Gap (0Yr = MW, 1-4Yr = old + Gap)
+    Then re-split and recalculate all components
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PARITY GROUPS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Sites in a parity group maintain IDENTICAL Gross and component split
+(Basic, Flexi, LTA, HRA, Conveyance, OT) regardless of MW zone differences.
+
+After any upload or MW revision, the HIGHEST Gross in the group is applied
+to ALL sites, with the exact same component split copied from the reference.
+
+Configured Parity Groups:
+  1. UFF Bangalore: SBLY, SBLZ, UBL5, UBL6, UBL9
+     - SBLZ is Zone 2 but follows Zone 1 rates
+  2. UFF Delhi-NCR: PDL1, PDL2, PDL5, UDL4
+     - HY sites (MW 16,781) match DL sites (MW 20,371+)
+  3. AMZL Delhi-NCR-Faridabad: DELH, DLIH, FADA, NCT2, NZMN,
+     DELF, DELG, DELK, DELL, DELN, DELO, DELR, DELT,
+     NCRG, NCTC, NCTD, NCTG, NDBA, NZML
+     - HY (MW 18,501) and DL (MW 22,411) share same Gross
+
+Config file: parity_groups.json
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+IXCE ASSOCIATE PT HARDCODE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+IXCE (AMZL, Panchkula) has hard-coded Associate PT Gross values:
+  0 Year: 11,071
+  1 Year: 11,499
+  2 Year: 11,922
+  3 Year: 12,133
+  4 Year: 12,346
+
+Smart Bypass: If formula-derived PT Gross exceeds the hardcoded value
+(after a future MW revision), the hardcode is automatically dropped.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ALFA RATE CARD LOGIC
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Premium: 15% applied to all components (Basic, Flexi, LTA, HRA)
+P10 = Premium components / 22 (daily rate for 10 days)
+P5  = Premium components / 22 / Daily Hrs * 4
+P8  = Premium components / 22 / Daily Hrs * 8
+OT  = ROUND(((Basic_P+Flexi_P+LTA_P)*12/(52*WeeklyHrs))*2) — only for 40hr sites
+
+Hard-Coded P10 Net Pay (config: alfa_hardcode.json):
+  - UDL6 (UFF): P10 Net = 935
+  - LKOI, IXDD, KNUD, KNUO, AGRD, GKPL, MREE, VNSD, LKOA, LKOD (AMZL): P10 Net = 861
+  - LKO1 (INFC): P10 Net = 861
+  - LKOO (ATS): P10 Net = 861
+  - NCRJ, NCT3, NCT8, NZMF, NZMM (AMZL): P10 Net = 935
+
+ROUND PF Sites (use ROUND instead of ROUNDUP for PF calculation):
+  - FHYE (UFF): P10=1001, P5=386, P8=775
+  - SBLZ, UBL6, UBL9, UBL5, SBLY (UFF): P10=1291
+
+Holiday Pay Override (INFC MH/GJ + HMH4):
+  Standard:  PH10 = ((Basic_P+Flexi_P+LTA_P)*12/(52*WeeklyHrs))*DailyHrs
+  Override:  PH10 = ((Basic_P+Flexi_P+LTA_P)*12)/(52*45)*2*9
+             PH5  = ((Basic_P+Flexi_P+LTA_P)*12)/(52*45)*2*4
+             PH8  = PH5 * 2
+
+Smart Bypass for ALFA Hardcodes:
+  If Gross increases and formula Net Pay > hardcoded Net Pay,
+  the hardcode is automatically bypassed and formula is used.
+  Flagged in "Remarks & Reference" sheet of ALFA export.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+BALANCING PAY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Old Per Hr OT and Old Hol Wage: From template (reference values)
+Bal Pay OT   = MAX(0, Old OT - New Per Hr OT)
+Bal Pay Hol  = MAX(0, Old Hol - New Hol Wage)
+PT cards: Blank (not applicable)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ROUNDING RULES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+All monetary values rounded to whole numbers (no decimals).
+PF: ROUNDUP (except ROUND PF sites listed above)
+ESIC: ROUNDUP
+OT/Hol Wage: ROUND
 """
 
 @app.get("/api/logic-depository")
