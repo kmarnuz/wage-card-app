@@ -1,0 +1,418 @@
+{
+  "TELANGANA|HYDERABAD": {
+    "pt_p10": 13,
+    "pt_p5": 7,
+    "pt_p8": 13,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "TG|HYDERABAD": {
+    "pt_p10": 13,
+    "pt_p5": 7,
+    "pt_p8": 13,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "ANDRA PRADESH|GUNTUR": {
+    "pt_p10": 13,
+    "pt_p5": 7,
+    "pt_p8": 13,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "AP|GUNTUR": {
+    "pt_p10": 13,
+    "pt_p5": 7,
+    "pt_p8": 13,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "ANDRA PRADESH|VISHAKHAPATNAM": {
+    "pt_p10": 13,
+    "pt_p5": 7,
+    "pt_p8": 13,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "AP|VISHAKHAPATNAM": {
+    "pt_p10": 13,
+    "pt_p5": 7,
+    "pt_p8": 13,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "ANDRA PRADESH|VIJAYAWADA": {
+    "pt_p10": 13,
+    "pt_p5": 7,
+    "pt_p8": 13,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "AP|VIJAYAWADA": {
+    "pt_p10": 13,
+    "pt_p5": 7,
+    "pt_p8": 13,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "TAMIL NADU|CHENNAI": {
+    "pt_p10": 24,
+    "pt_p5": 12,
+    "pt_p8": 24,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "TN|CHENNAI": {
+    "pt_p10": 24,
+    "pt_p5": 12,
+    "pt_p8": 24,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "TAMIL NADU|CHENNAI(MAAJ)": {
+    "pt_p10": 24,
+    "pt_p5": 12,
+    "pt_p8": 24,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "TN|CHENNAI(MAAJ)": {
+    "pt_p10": 24,
+    "pt_p5": 12,
+    "pt_p8": 24,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "TAMIL NADU|COIMBATORE": {
+    "pt_p10": 24,
+    "pt_p5": 12,
+    "pt_p8": 24,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "TN|COIMBATORE": {
+    "pt_p10": 24,
+    "pt_p5": 12,
+    "pt_p8": 24,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "PONDICHERRY|PONDICHERRY": {
+    "pt_p10": 2,
+    "pt_p5": 1,
+    "pt_p8": 2,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "PU|PONDICHERRY": {
+    "pt_p10": 2,
+    "pt_p5": 1,
+    "pt_p8": 2,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "ASSAM|GUWAHATI": {
+    "pt_p10": 15,
+    "pt_p5": 8,
+    "pt_p8": 15,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "AS|GUWAHATI": {
+    "pt_p10": 15,
+    "pt_p5": 8,
+    "pt_p8": 15,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "PUNJAB|LUDHIANA": {
+    "pt_p10": 9,
+    "pt_p5": 5,
+    "pt_p8": 9,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "PB|LUDHIANA": {
+    "pt_p10": 9,
+    "pt_p5": 5,
+    "pt_p8": 9,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "PUNJAB|MOHALI": {
+    "pt_p10": 9,
+    "pt_p5": 5,
+    "pt_p8": 9,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "PB|MOHALI": {
+    "pt_p10": 9,
+    "pt_p5": 5,
+    "pt_p8": 9,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "WEST BENGAL|KOLKATA": {
+    "pt_p10": 12,
+    "pt_p5": 6,
+    "pt_p8": 12,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "WB|KOLKATA": {
+    "pt_p10": 12,
+    "pt_p5": 6,
+    "pt_p8": 12,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "MADHYA PRADESH|INDORE": {
+    "pt_p10": 9,
+    "pt_p5": 5,
+    "pt_p8": 9,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "MP|INDORE": {
+    "pt_p10": 9,
+    "pt_p5": 5,
+    "pt_p8": 9,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "MADHYA PRADESH|BHOPAL": {
+    "pt_p10": 9,
+    "pt_p5": 5,
+    "pt_p8": 9,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "MP|BHOPAL": {
+    "pt_p10": 9,
+    "pt_p5": 5,
+    "pt_p8": 9,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "MAHARASHTRA|MUMBAI": {
+    "pt_p10": 32,
+    "pt_p5": 16,
+    "pt_p8": 32,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "MH|MUMBAI": {
+    "pt_p10": 32,
+    "pt_p5": 16,
+    "pt_p8": 32,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "MAHARASHTRA|PUNE": {
+    "pt_p10": 32,
+    "pt_p5": 16,
+    "pt_p8": 32,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "MH|PUNE": {
+    "pt_p10": 32,
+    "pt_p5": 16,
+    "pt_p8": 32,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "MAHARASHTRA|NAGPUR": {
+    "pt_p10": 32,
+    "pt_p5": 16,
+    "pt_p8": 32,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "MH|NAGPUR": {
+    "pt_p10": 32,
+    "pt_p5": 16,
+    "pt_p8": 32,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "KARNATAKA|BANGALORE": {
+    "pt_p10": 13,
+    "pt_p5": 7,
+    "pt_p8": 13,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "KA|BANGALORE": {
+    "pt_p10": 13,
+    "pt_p5": 7,
+    "pt_p8": 13,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "KARNATAKA|HUBLI": {
+    "pt_p10": 13,
+    "pt_p5": 7,
+    "pt_p8": 13,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "KA|HUBLI": {
+    "pt_p10": 13,
+    "pt_p5": 7,
+    "pt_p8": 13,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "KARNATAKA|MYSORE": {
+    "pt_p10": 13,
+    "pt_p5": 7,
+    "pt_p8": 13,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "KA|MYSORE": {
+    "pt_p10": 13,
+    "pt_p5": 7,
+    "pt_p8": 13,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "PUNJAB|JALANDHAR": {
+    "pt_p10": 9,
+    "pt_p5": 5,
+    "pt_p8": 9,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "PB|JALANDHAR": {
+    "pt_p10": 9,
+    "pt_p5": 5,
+    "pt_p8": 9,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "PUNJAB|AMRITSAR": {
+    "pt_p10": 9,
+    "pt_p5": 5,
+    "pt_p8": 9,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "PB|AMRITSAR": {
+    "pt_p10": 9,
+    "pt_p5": 5,
+    "pt_p8": 9,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "GUJRAT|AHMEDABAD": {
+    "pt_p10": 20,
+    "pt_p5": 10,
+    "pt_p8": 20,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "GJ|AHMEDABAD": {
+    "pt_p10": 20,
+    "pt_p5": 10,
+    "pt_p8": 20,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "GUJRAT|BARODA": {
+    "pt_p10": 20,
+    "pt_p5": 10,
+    "pt_p8": 20,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "GJ|BARODA": {
+    "pt_p10": 20,
+    "pt_p5": 10,
+    "pt_p8": 20,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "GUJRAT|SURAT": {
+    "pt_p10": 16,
+    "pt_p5": 8,
+    "pt_p8": 16,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "GJ|SURAT": {
+    "pt_p10": 16,
+    "pt_p5": 8,
+    "pt_p8": 16,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "MAHARASHTRA|NASHIK": {
+    "pt_p10": 32,
+    "pt_p5": 16,
+    "pt_p8": 32,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "MH|NASHIK": {
+    "pt_p10": 32,
+    "pt_p5": 16,
+    "pt_p8": 32,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  }
+}

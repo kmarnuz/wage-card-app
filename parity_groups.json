@@ -1,0 +1,27 @@
+{
+  "description": "Parity Groups - Sites that must maintain the same Gross rates regardless of their MW Zone differences. During MW revision, the HIGHEST Gross in a parity group is applied to ALL sites in that group.",
+  "parity_groups": [
+    {
+      "name": "UFF Bangalore",
+      "entity": "UFF",
+      "state": "KA",
+      "city": "Bangalore",
+      "sites": ["SBLY", "SBLZ", "UBL5", "UBL6", "UBL9"],
+      "notes": "SBLZ is Zone 2 but follows Zone 1 rates for parity"
+    },
+    {
+      "name": "UFF Delhi-NCR",
+      "entity": "UFF",
+      "region": "NCR",
+      "sites": ["PDL1", "PDL2", "PDL5", "UDL4"],
+      "notes": "PDL1/PDL5 are HY (MW 16781), PDL2/UDL4 are DL (MW 20371/22411) - same Gross"
+    },
+    {
+      "name": "AMZL Delhi-NCR-Faridabad",
+      "entity": "AMZL",
+      "region": "NCR",
+      "sites": ["DELH", "DLIH", "FADA", "NCT2", "NZMN", "DELF", "DELG", "DELK", "DELL", "DELN", "DELO", "DELR", "DELT", "NCRG", "NCTC", "NCTD", "NCTG", "NDBA", "NZML"],
+      "notes": "HY sites (MW 18501) and DL sites (MW 22411) share same Gross. FADA CSDL is exception (has higher Gross)."
+    }
+  ]
+}
