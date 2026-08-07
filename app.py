@@ -1752,6 +1752,89 @@ def export_alfa_rate_card():
     for entry in alfa_hardcode.get('round_pf_sites', []):
         round_pf_sites[entry['site_code'].upper()] = [c.upper() for c in entry.get('attendance_codes', [])]
 
+    # Track hardcode bypass notifications
+    hardcode_notifications = []
+
+    def compute_p10_net(basic, flexi, lta, hra, weekly_hours, use_round, pt_p10, lwf_p10):
+        """Compute P10 Net Pay using formula logic (Python-side) for comparison."""
+        premium = 1.15
+        basic_p = round(basic * premium)
+        flexi_p = round(flexi * premium)
+        lta_p = round(lta * premium)
+        hra_p = round(hra * premium)
+        p10_basic = round(basic_p / 22)
+        p10_flexi = round(flexi_p / 22)
+        p10_lta = round(lta_p / 22)
+        p10_hra = round(hra_p / 22)
+        p10_gross = p10_basic + p10_flexi + p10_lta + p10_hra
+        included_p = basic_p + flexi_p + lta_p
+        if weekly_hours == 40:
+            p10_ot = round(((included_p) * 12 / (52 * weekly_hours)) * 2)
+        else:
+            p10_ot = 0
+        p10_total = p10_gross + p10_ot
+        if use_round:
+            p10_pf = round(p10_basic * 0.12)
+        else:
+            p10_pf = math.ceil(p10_basic * 0.12)
+        if included_p > 21000:
+            p10_esic = 0
+        else:
+            p10_esic = math.ceil((p10_basic + p10_flexi + p10_lta) * 0.0075)
+        p10_tot_ded = p10_pf + p10_esic + pt_p10 + lwf_p10
+        p10_net = p10_total - p10_tot_ded
+        return p10_net
+
+    def compute_p5_net(basic, flexi, lta, hra, daily_hours, weekly_hours, use_round, pt_p5, lwf_p5):
+        """Compute P5 Net Pay."""
+        premium = 1.15
+        basic_p = round(basic * premium)
+        flexi_p = round(flexi * premium)
+        lta_p = round(lta * premium)
+        hra_p = round(hra * premium)
+        p5_basic = round(basic_p / 22 / daily_hours * 4)
+        p5_flexi = round(flexi_p / 22 / daily_hours * 4)
+        p5_lta = round(lta_p / 22 / daily_hours * 4)
+        p5_hra = round(hra_p / 22 / daily_hours * 4)
+        p5_gross = p5_basic + p5_flexi + p5_lta + p5_hra
+        included_p = basic_p + flexi_p + lta_p
+        if use_round:
+            p5_pf = round(p5_basic * 0.12)
+        else:
+            p5_pf = math.ceil(p5_basic * 0.12)
+        if included_p > 21000:
+            p5_esic = 0
+        else:
+            p5_esic = math.ceil((p5_basic + p5_flexi + p5_lta) * 0.0075)
+        p5_tot_ded = p5_pf + p5_esic + pt_p5 + lwf_p5
+        p5_net = p5_gross - p5_tot_ded
+        return p5_net
+
+    def compute_p8_net(basic, flexi, lta, hra, daily_hours, weekly_hours, use_round, pt_p8, lwf_p8):
+        """Compute P8 Net Pay."""
+        premium = 1.15
+        basic_p = round(basic * premium)
+        flexi_p = round(flexi * premium)
+        lta_p = round(lta * premium)
+        hra_p = round(hra * premium)
+        p8_basic = round(basic_p / 22 / daily_hours * 8)
+        p8_flexi = round(flexi_p / 22 / daily_hours * 8)
+        p8_lta = round(lta_p / 22 / daily_hours * 8)
+        p8_hra = round(hra_p / 22 / daily_hours * 8)
+        p8_gross = p8_basic + p8_flexi + p8_lta + p8_hra
+        included_p = basic_p + flexi_p + lta_p
+        if use_round:
+            p8_pf = round(p8_basic * 0.12)
+        else:
+            p8_pf = math.ceil(p8_basic * 0.12)
+        if included_p > 21000:
+            p8_esic = 0
+        else:
+            p8_esic = math.ceil((p8_basic + p8_flexi + p8_lta) * 0.0075)
+        p8_tot_ded = p8_pf + p8_esic + pt_p8 + lwf_p8
+        p8_net = p8_gross - p8_tot_ded
+        return p8_net
+
     # Write data with formulas
     for idx, card in enumerate(sorted(assoc_cards, key=lambda x: (x.get('state',''), x.get('city',''))), 1):
         r = idx + 1  # row number
@@ -1812,10 +1895,21 @@ def export_alfa_rate_card():
         ws.cell(row=r, column=30, value=pt_data.get('lwf_p10', 0))  # P10_LWF
         ws.cell(row=r, column=31, value=f"=AA{rs}+AB{rs}+AC{rs}+AD{rs}")  # P10_TotDed
 
-        # P10_Net - check for hardcoded override
+        # P10_Net - check for hardcoded override (bypass if formula gives higher)
         p10_hardcode = hardcoded_net.get((site_code.upper(), 'P10'))
         if p10_hardcode:
-            ws.cell(row=r, column=32, value=p10_hardcode)  # Hard-coded P10 Net
+            basic = card.get('basic', 0)
+            flexi = card.get('flexi', 0)
+            lta = card.get('lta', 0)
+            hra = card.get('hra', 0)
+            weekly_hours = card.get('weekly_hours', 45)
+            formula_p10_net = compute_p10_net(basic, flexi, lta, hra, weekly_hours, use_round_pf, pt_data.get('pt_p10', 0), pt_data.get('lwf_p10', 0))
+            if formula_p10_net > p10_hardcode:
+                # Formula gives higher Net Pay — bypass hardcode, use formula
+                ws.cell(row=r, column=32, value=f"=Z{rs}-AE{rs}")
+                hardcode_notifications.append(f"{site_code} P10: Formula Net ({formula_p10_net}) > Hardcoded ({p10_hardcode}) — using formula")
+            else:
+                ws.cell(row=r, column=32, value=p10_hardcode)  # Hard-coded P10 Net
         else:
             ws.cell(row=r, column=32, value=f"=Z{rs}-AE{rs}")  # P10_Net formula
 
@@ -1831,10 +1925,21 @@ def export_alfa_rate_card():
         ws.cell(row=r, column=41, value=pt_data.get('lwf_p5', 0))  # P5_LWF
         ws.cell(row=r, column=42, value=f"=AL{rs}+AM{rs}+AN{rs}+AO{rs}")  # P5_TotDed
 
-        # P5_Net - check for hardcoded override
+        # P5_Net - check for hardcoded override (bypass if formula gives higher)
         p5_hardcode = hardcoded_net.get((site_code.upper(), 'P5'))
         if p5_hardcode:
-            ws.cell(row=r, column=43, value=p5_hardcode)  # Hard-coded P5 Net
+            basic = card.get('basic', 0)
+            flexi = card.get('flexi', 0)
+            lta = card.get('lta', 0)
+            hra = card.get('hra', 0)
+            daily_hours = card.get('daily_hours', 8)
+            weekly_hours = card.get('weekly_hours', 45)
+            formula_p5_net = compute_p5_net(basic, flexi, lta, hra, daily_hours, weekly_hours, use_round_pf, pt_data.get('pt_p5', 0), pt_data.get('lwf_p5', 0))
+            if formula_p5_net > p5_hardcode:
+                ws.cell(row=r, column=43, value=f"=AK{rs}-AP{rs}")
+                hardcode_notifications.append(f"{site_code} P5: Formula Net ({formula_p5_net}) > Hardcoded ({p5_hardcode}) — using formula")
+            else:
+                ws.cell(row=r, column=43, value=p5_hardcode)  # Hard-coded P5 Net
         else:
             ws.cell(row=r, column=43, value=f"=AK{rs}-AP{rs}")  # P5_Net formula
 
@@ -1850,10 +1955,21 @@ def export_alfa_rate_card():
         ws.cell(row=r, column=52, value=pt_data.get('lwf_p8', 0))  # P8_LWF
         ws.cell(row=r, column=53, value=f"=AW{rs}+AX{rs}+AY{rs}+AZ{rs}")  # P8_TotDed
 
-        # P8_Net - check for hardcoded override
+        # P8_Net - check for hardcoded override (bypass if formula gives higher)
         p8_hardcode = hardcoded_net.get((site_code.upper(), 'P8'))
         if p8_hardcode:
-            ws.cell(row=r, column=54, value=p8_hardcode)  # Hard-coded P8 Net
+            basic = card.get('basic', 0)
+            flexi = card.get('flexi', 0)
+            lta = card.get('lta', 0)
+            hra = card.get('hra', 0)
+            daily_hours = card.get('daily_hours', 8)
+            weekly_hours = card.get('weekly_hours', 45)
+            formula_p8_net = compute_p8_net(basic, flexi, lta, hra, daily_hours, weekly_hours, use_round_pf, pt_data.get('pt_p8', 0), pt_data.get('lwf_p8', 0))
+            if formula_p8_net > p8_hardcode:
+                ws.cell(row=r, column=54, value=f"=AV{rs}-BA{rs}")
+                hardcode_notifications.append(f"{site_code} P8: Formula Net ({formula_p8_net}) > Hardcoded ({p8_hardcode}) — using formula")
+            else:
+                ws.cell(row=r, column=54, value=p8_hardcode)  # Hard-coded P8 Net
         else:
             ws.cell(row=r, column=54, value=f"=AV{rs}-BA{rs}")  # P8_Net formula
 
@@ -1910,19 +2026,35 @@ def export_alfa_rate_card():
         "                      PH8  = PH5 * 2",
         "   Applies to: INFC sites in MH & GJ states + HMH4 (GSF HUB)",
         "",
-        "4. PREMIUM: 15% applied to all components (Basic, Flexi, LTA, HRA)",
+        "4. SMART HARDCODE BYPASS:",
+        "   If Gross increases and formula Net Pay > hardcoded Net Pay,",
+        "   the hardcode is bypassed and formula is used instead.",
+    ]
+
+    # Add bypass notifications if any
+    if hardcode_notifications:
+        remarks.append("")
+        remarks.append("   ⚠️ HARDCODE BYPASSED THIS EXPORT:")
+        for notif in hardcode_notifications:
+            remarks.append(f"   → {notif}")
+    else:
+        remarks.append("   No bypasses triggered this export.")
+
+    remarks.extend([
         "",
-        "5. PF FORMULA: ROUNDUP(Basic*12%, 0) for most sites, ROUND for sites listed in #2",
+        "5. PREMIUM: 15% applied to all components (Basic, Flexi, LTA, HRA)",
         "",
-        "6. ESIC: ROUNDUP applied; IF(Included > 21000, 0, (components)*0.75%)",
+        "6. PF FORMULA: ROUNDUP(Basic*12%, 0) for most sites, ROUND for sites listed in #2",
         "",
-        "7. OT: Applicable only for Mandatory OT = Y (40hr sites)",
+        "7. ESIC: ROUNDUP applied; IF(Included > 21000, 0, (components)*0.75%)",
+        "",
+        "8. OT: Applicable only for Mandatory OT = Y (40hr sites)",
         "   Formula: ROUND(((Basic_P+Flexi_P+LTA_P)*12/(52*WeeklyHrs))*2, 0)",
         "",
         "=" * 60,
         f"Generated: {datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC')}",
         "Developed by: Ravi Kumar (Kmarnuz) | Sr. SME CTK MHLS",
-    ]
+    ])
     for i, line in enumerate(remarks, 1):
         ws_remarks.cell(row=i, column=1, value=line)
     ws_remarks.column_dimensions['A'].width = 80
