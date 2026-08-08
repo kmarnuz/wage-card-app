@@ -12,7 +12,6 @@ venv/
 .venv/
 
 # App data (generated at runtime)
-data.json
 audit_trail.json
 uploads/
 password.txt
