@@ -1,31 +1,31 @@
 {
-  "description": "ALFA Rate Card hard-coded overrides. These values override formula-calculated values for specific site+attendance code combinations.",
-  "hardcoded_net_pay": [
-    {"entity": "UFF", "site_code": "UDL6", "attendance_code": "P10", "net_pay": 935},
-    {"entity": "AMZL", "site_code": "LKOI", "attendance_code": "P10", "net_pay": 861},
-    {"entity": "AMZL", "site_code": "IXDD", "attendance_code": "P10", "net_pay": 861},
-    {"entity": "AMZL", "site_code": "KNUD", "attendance_code": "P10", "net_pay": 861},
-    {"entity": "AMZL", "site_code": "KNUO", "attendance_code": "P10", "net_pay": 861},
-    {"entity": "AMZL", "site_code": "AGRD", "attendance_code": "P10", "net_pay": 861},
-    {"entity": "AMZL", "site_code": "GKPL", "attendance_code": "P10", "net_pay": 861},
-    {"entity": "AMZL", "site_code": "MREE", "attendance_code": "P10", "net_pay": 861},
-    {"entity": "AMZL", "site_code": "VNSD", "attendance_code": "P10", "net_pay": 861},
-    {"entity": "AMZL", "site_code": "LKOA", "attendance_code": "P10", "net_pay": 861},
-    {"entity": "AMZL", "site_code": "LKOD", "attendance_code": "P10", "net_pay": 861},
-    {"entity": "INFC", "site_code": "LKO1", "attendance_code": "P10", "net_pay": 861},
-    {"entity": "ATS", "site_code": "LKOO", "attendance_code": "P10", "net_pay": 861},
-    {"entity": "AMZL", "site_code": "NCRJ", "attendance_code": "P10", "net_pay": 935},
-    {"entity": "AMZL", "site_code": "NCT3", "attendance_code": "P10", "net_pay": 935},
-    {"entity": "AMZL", "site_code": "NCT8", "attendance_code": "P10", "net_pay": 935},
-    {"entity": "AMZL", "site_code": "NZMF", "attendance_code": "P10", "net_pay": 935},
-    {"entity": "AMZL", "site_code": "NZMM", "attendance_code": "P10", "net_pay": 935}
+  "description": "ALFA Rate Card hard-coded overrides. P10_OT values override formula OT for specific sites. Smart bypass: if formula OT exceeds hardcoded value after rate increase, formula is used.",
+  "hardcoded_p10_ot": [
+    {"entity": "UFF", "site_code": "UDL6", "attendance_code": "P10", "ot_amount": 227},
+    {"entity": "AMZL", "site_code": "LKOI", "attendance_code": "P10", "ot_amount": 211},
+    {"entity": "AMZL", "site_code": "IXDD", "attendance_code": "P10", "ot_amount": 211},
+    {"entity": "AMZL", "site_code": "KNUD", "attendance_code": "P10", "ot_amount": 211},
+    {"entity": "AMZL", "site_code": "KNUO", "attendance_code": "P10", "ot_amount": 211},
+    {"entity": "AMZL", "site_code": "AGRD", "attendance_code": "P10", "ot_amount": 211},
+    {"entity": "AMZL", "site_code": "GKPL", "attendance_code": "P10", "ot_amount": 211},
+    {"entity": "AMZL", "site_code": "MREE", "attendance_code": "P10", "ot_amount": 211},
+    {"entity": "AMZL", "site_code": "VNSD", "attendance_code": "P10", "ot_amount": 211},
+    {"entity": "AMZL", "site_code": "LKOA", "attendance_code": "P10", "ot_amount": 211},
+    {"entity": "AMZL", "site_code": "LKOD", "attendance_code": "P10", "ot_amount": 211},
+    {"entity": "INFC", "site_code": "LKO1", "attendance_code": "P10", "ot_amount": 211},
+    {"entity": "ATS", "site_code": "LKOO", "attendance_code": "P10", "ot_amount": 211},
+    {"entity": "AMZL", "site_code": "NCRJ", "attendance_code": "P10", "ot_amount": 227},
+    {"entity": "AMZL", "site_code": "NCT3", "attendance_code": "P10", "ot_amount": 227},
+    {"entity": "AMZL", "site_code": "NCT8", "attendance_code": "P10", "ot_amount": 227},
+    {"entity": "AMZL", "site_code": "NZMF", "attendance_code": "P10", "ot_amount": 227},
+    {"entity": "AMZL", "site_code": "NZMM", "attendance_code": "P10", "ot_amount": 227}
   ],
   "round_pf_sites": [
-    {"entity": "UFF", "site_code": "FHYE", "attendance_codes": ["P10", "P5", "P8"], "expected_net": {"P10": 1001, "P5": 386, "P8": 775}},
-    {"entity": "UFF", "site_code": "SBLZ", "attendance_codes": ["P10"], "expected_net": {"P10": 1291}},
-    {"entity": "UFF", "site_code": "UBL6", "attendance_codes": ["P10"], "expected_net": {"P10": 1291}},
-    {"entity": "UFF", "site_code": "UBL9", "attendance_codes": ["P10"], "expected_net": {"P10": 1291}},
-    {"entity": "UFF", "site_code": "UBL5", "attendance_codes": ["P10"], "expected_net": {"P10": 1291}},
-    {"entity": "UFF", "site_code": "SBLY", "attendance_codes": ["P10"], "expected_net": {"P10": 1291}}
+    {"entity": "UFF", "site_code": "FHYE", "attendance_codes": ["P10", "P5", "P8"]},
+    {"entity": "UFF", "site_code": "SBLZ", "attendance_codes": ["P10"]},
+    {"entity": "UFF", "site_code": "UBL6", "attendance_codes": ["P10"]},
+    {"entity": "UFF", "site_code": "UBL9", "attendance_codes": ["P10"]},
+    {"entity": "UFF", "site_code": "UBL5", "attendance_codes": ["P10"]},
+    {"entity": "UFF", "site_code": "SBLY", "attendance_codes": ["P10"]}
   ]
 }

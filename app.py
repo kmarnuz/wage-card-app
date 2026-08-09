@@ -1147,12 +1147,14 @@ P5  = Premium components / 22 / Daily Hrs * 4
 P8  = Premium components / 22 / Daily Hrs * 8
 OT  = ROUND(((Basic_P+Flexi_P+LTA_P)*12/(52*WeeklyHrs))*2) — only for 40hr sites
 
-Hard-Coded P10 Net Pay (config: alfa_hardcode.json):
-  - UDL6 (UFF): P10 Net = 935
-  - LKOI, IXDD, KNUD, KNUO, AGRD, GKPL, MREE, VNSD, LKOA, LKOD (AMZL): P10 Net = 861
-  - LKO1 (INFC): P10 Net = 861
-  - LKOO (ATS): P10 Net = 861
-  - NCRJ, NCT3, NCT8, NZMF, NZMM (AMZL): P10 Net = 935
+Hard-Coded P10 OT (config: alfa_hardcode.json):
+  - UDL6 (UFF, Noida): P10_OT = 227
+  - LKOI, IXDD, KNUD, KNUO, AGRD, GKPL, MREE, VNSD, LKOA, LKOD (AMZL): P10_OT = 211
+  - LKO1 (INFC, Lucknow): P10_OT = 211
+  - LKOO (ATS, Lucknow): P10_OT = 211
+  - NCRJ, NCT3, NCT8, NZMF, NZMM (AMZL, Ghaziabad/Noida): P10_OT = 227
+  Smart Bypass: If formula OT > hardcoded OT after rate increase, formula used.
+  Net Pay flows naturally: Net = (P10_Gross + P10_OT) - Deductions
 
 ROUND PF Sites (use ROUND instead of ROUNDUP for PF calculation):
   - FHYE (UFF): P10=1001, P5=386, P8=775
@@ -1165,7 +1167,7 @@ Holiday Pay Override (INFC MH/GJ + HMH4):
              PH8  = PH5 * 2
 
 Smart Bypass for ALFA Hardcodes:
-  If Gross increases and formula Net Pay > hardcoded Net Pay,
+  If Gross increases and formula P10_OT > hardcoded P10_OT,
   the hardcode is automatically bypassed and formula is used.
   Flagged in "Remarks & Reference" sheet of ALFA export.
 
@@ -1843,11 +1845,11 @@ def export_alfa_rate_card():
         with open(alfa_hardcode_file, 'r') as f:
             alfa_hardcode = json.load(f)
 
-    # Build lookup for hardcoded net pay: (site_code, attendance_code) -> net_pay
-    hardcoded_net = {}
-    for entry in alfa_hardcode.get('hardcoded_net_pay', []):
+    # Build lookup for hardcoded P10 OT: (site_code, attendance_code) -> ot_amount
+    hardcoded_p10_ot = {}
+    for entry in alfa_hardcode.get('hardcoded_p10_ot', []):
         key = (entry['site_code'].upper(), entry['attendance_code'].upper())
-        hardcoded_net[key] = entry['net_pay']
+        hardcoded_p10_ot[key] = entry['ot_amount']
 
     # Build lookup for ROUND PF sites: site_code -> attendance_codes list
     round_pf_sites = {}
@@ -1989,7 +1991,26 @@ def export_alfa_rate_card():
         ws.cell(row=r, column=22, value=f"=ROUND(Q{rs}/22,0)")  # P10_LTA
         ws.cell(row=r, column=23, value=f"=ROUND(R{rs}/22,0)")  # P10_HRA
         ws.cell(row=r, column=24, value=f"=T{rs}+U{rs}+V{rs}+W{rs}")  # P10_Gross
-        ws.cell(row=r, column=25, value=f'=ROUND(IF(G{rs}="Y",((O{rs}+P{rs}+Q{rs})*12/(52*F{rs}))*2,0),0)')  # P10_OT
+        # P10_OT - check for hardcoded override (smart bypass)
+        p10_ot_hardcode = hardcoded_p10_ot.get((site_code.upper(), 'P10'))
+        if p10_ot_hardcode:
+            # Compute formula-based OT for smart bypass check
+            basic_p = round(card.get('basic', 0) * 1.15)
+            flexi_p = round(card.get('flexi', 0) * 1.15)
+            lta_p = round(card.get('lta', 0) * 1.15)
+            included_p = basic_p + flexi_p + lta_p
+            wh = card.get('weekly_hours', 45)
+            formula_ot = round(((included_p) * 12 / (52 * wh)) * 2) if wh == 40 else 0
+            if formula_ot > p10_ot_hardcode:
+                # Formula OT exceeds hardcode — bypass, use formula
+                ws.cell(row=r, column=25, value=f'=ROUND(IF(G{rs}="Y",((O{rs}+P{rs}+Q{rs})*12/(52*F{rs}))*2,0),0)')
+                hardcode_notifications.append(f"{site_code} P10_OT: Formula ({formula_ot}) > Hardcoded ({p10_ot_hardcode}) — using formula")
+            else:
+                ws.cell(row=r, column=25, value=p10_ot_hardcode)  # Hardcoded P10 OT
+        else:
+            ws.cell(row=r, column=25, value=f'=ROUND(IF(G{rs}="Y",((O{rs}+P{rs}+Q{rs})*12/(52*F{rs}))*2,0),0)')  # P10_OT formula
+
+        # P10_Total Gross - always formula (Gross + OT)
         ws.cell(row=r, column=26, value=f"=X{rs}+Y{rs}")  # P10_Total
         ws.cell(row=r, column=27, value=f"={pf_func}(T{rs}*12%,0)")  # P10_PF (ROUND or ROUNDUP)
         ws.cell(row=r, column=28, value=f"=ROUNDUP(IF((O{rs}+P{rs}+Q{rs})>21000,0,(T{rs}+U{rs}+V{rs})*0.75%),0)")  # P10_ESIC
@@ -1997,23 +2018,8 @@ def export_alfa_rate_card():
         ws.cell(row=r, column=30, value=pt_data.get('lwf_p10', 0))  # P10_LWF
         ws.cell(row=r, column=31, value=f"=AA{rs}+AB{rs}+AC{rs}+AD{rs}")  # P10_TotDed
 
-        # P10_Net - check for hardcoded override (bypass if formula gives higher)
-        p10_hardcode = hardcoded_net.get((site_code.upper(), 'P10'))
-        if p10_hardcode:
-            basic = card.get('basic', 0)
-            flexi = card.get('flexi', 0)
-            lta = card.get('lta', 0)
-            hra = card.get('hra', 0)
-            weekly_hours = card.get('weekly_hours', 45)
-            formula_p10_net = compute_p10_net(basic, flexi, lta, hra, weekly_hours, use_round_pf, pt_data.get('pt_p10', 0), pt_data.get('lwf_p10', 0))
-            if formula_p10_net > p10_hardcode:
-                # Formula gives higher Net Pay — bypass hardcode, use formula
-                ws.cell(row=r, column=32, value=f"=Z{rs}-AE{rs}")
-                hardcode_notifications.append(f"{site_code} P10: Formula Net ({formula_p10_net}) > Hardcoded ({p10_hardcode}) — using formula")
-            else:
-                ws.cell(row=r, column=32, value=p10_hardcode)  # Hard-coded P10 Net
-        else:
-            ws.cell(row=r, column=32, value=f"=Z{rs}-AE{rs}")  # P10_Net formula
+        # P10_Net - always formula (Net = Total Gross - Deductions)
+        ws.cell(row=r, column=32, value=f"=Z{rs}-AE{rs}")  # P10_Net
 
         # P5 (AG-AQ) - formulas
         ws.cell(row=r, column=33, value=f"=ROUND(O{rs}/22/E{rs}*4,0)")  # P5_Basic
@@ -2027,23 +2033,8 @@ def export_alfa_rate_card():
         ws.cell(row=r, column=41, value=pt_data.get('lwf_p5', 0))  # P5_LWF
         ws.cell(row=r, column=42, value=f"=AL{rs}+AM{rs}+AN{rs}+AO{rs}")  # P5_TotDed
 
-        # P5_Net - check for hardcoded override (bypass if formula gives higher)
-        p5_hardcode = hardcoded_net.get((site_code.upper(), 'P5'))
-        if p5_hardcode:
-            basic = card.get('basic', 0)
-            flexi = card.get('flexi', 0)
-            lta = card.get('lta', 0)
-            hra = card.get('hra', 0)
-            daily_hours = card.get('daily_hours', 8)
-            weekly_hours = card.get('weekly_hours', 45)
-            formula_p5_net = compute_p5_net(basic, flexi, lta, hra, daily_hours, weekly_hours, use_round_pf, pt_data.get('pt_p5', 0), pt_data.get('lwf_p5', 0))
-            if formula_p5_net > p5_hardcode:
-                ws.cell(row=r, column=43, value=f"=AK{rs}-AP{rs}")
-                hardcode_notifications.append(f"{site_code} P5: Formula Net ({formula_p5_net}) > Hardcoded ({p5_hardcode}) — using formula")
-            else:
-                ws.cell(row=r, column=43, value=p5_hardcode)  # Hard-coded P5 Net
-        else:
-            ws.cell(row=r, column=43, value=f"=AK{rs}-AP{rs}")  # P5_Net formula
+        # P5_Net - always formula
+        ws.cell(row=r, column=43, value=f"=AK{rs}-AP{rs}")  # P5_Net
 
         # P8 (AR-BB) - formulas
         ws.cell(row=r, column=44, value=f"=ROUND(O{rs}/22/E{rs}*8,0)")  # P8_Basic
@@ -2057,23 +2048,8 @@ def export_alfa_rate_card():
         ws.cell(row=r, column=52, value=pt_data.get('lwf_p8', 0))  # P8_LWF
         ws.cell(row=r, column=53, value=f"=AW{rs}+AX{rs}+AY{rs}+AZ{rs}")  # P8_TotDed
 
-        # P8_Net - check for hardcoded override (bypass if formula gives higher)
-        p8_hardcode = hardcoded_net.get((site_code.upper(), 'P8'))
-        if p8_hardcode:
-            basic = card.get('basic', 0)
-            flexi = card.get('flexi', 0)
-            lta = card.get('lta', 0)
-            hra = card.get('hra', 0)
-            daily_hours = card.get('daily_hours', 8)
-            weekly_hours = card.get('weekly_hours', 45)
-            formula_p8_net = compute_p8_net(basic, flexi, lta, hra, daily_hours, weekly_hours, use_round_pf, pt_data.get('pt_p8', 0), pt_data.get('lwf_p8', 0))
-            if formula_p8_net > p8_hardcode:
-                ws.cell(row=r, column=54, value=f"=AV{rs}-BA{rs}")
-                hardcode_notifications.append(f"{site_code} P8: Formula Net ({formula_p8_net}) > Hardcoded ({p8_hardcode}) — using formula")
-            else:
-                ws.cell(row=r, column=54, value=p8_hardcode)  # Hard-coded P8 Net
-        else:
-            ws.cell(row=r, column=54, value=f"=AV{rs}-BA{rs}")  # P8_Net formula
+        # P8_Net - always formula
+        ws.cell(row=r, column=54, value=f"=AV{rs}-BA{rs}")  # P8_Net
 
         # Holiday (BC-BK) - formulas
         ws.cell(row=r, column=55, value=f"=ROUNDUP(IF((O{rs}+P{rs}+Q{rs})>21000,0,(Z{rs}+X{rs})*0.75%),0)")  # PH10_ESIC
@@ -2109,13 +2085,14 @@ def export_alfa_rate_card():
         "ALFA RATE CARD — REMARKS & REFERENCE",
         "=" * 60,
         "",
-        "1. HARD-CODED NET PAY SITES:",
-        "   The following sites have P10/P5/P8 Net Pay hard-coded (not formula-driven):",
-        "   - UDL6 (UFF, Noida): P10 Net = 935",
-        "   - LKOI, IXDD, KNUD, KNUO, AGRD, GKPL, MREE, VNSD, LKOA, LKOD (AMZL): P10 Net = 861",
-        "   - LKO1 (INFC, Lucknow): P10 Net = 861",
-        "   - LKOO (ATS, Lucknow): P10 Net = 861",
-        "   - NCRJ, NCT3, NCT8, NZMF, NZMM (AMZL, Ghaziabad/Noida): P10 Net = 935",
+        "1. HARD-CODED P10 OT SITES:",
+        "   The following sites have P10_OT hard-coded (not formula-driven):",
+        "   Net Pay flows naturally: Net = (P10_Gross + P10_OT) - Deductions",
+        "   - UDL6 (UFF, Noida): P10_OT = 227",
+        "   - LKOI, IXDD, KNUD, KNUO, AGRD, GKPL, MREE, VNSD, LKOA, LKOD (AMZL): P10_OT = 211",
+        "   - LKO1 (INFC, Lucknow): P10_OT = 211",
+        "   - LKOO (ATS, Lucknow): P10_OT = 211",
+        "   - NCRJ, NCT3, NCT8, NZMF, NZMM (AMZL, Ghaziabad/Noida): P10_OT = 227",
         "",
         "2. ROUND PF SITES (instead of ROUNDUP):",
         "   - FHYE (UFF, Hyderabad): P10 Net = 1001, P5 Net = 386, P8 Net = 775",
@@ -2129,7 +2106,7 @@ def export_alfa_rate_card():
         "   Applies to: INFC sites in MH & GJ states + HMH4 (GSF HUB)",
         "",
         "4. SMART HARDCODE BYPASS:",
-        "   If Gross increases and formula Net Pay > hardcoded Net Pay,",
+        "   If Gross increases and formula P10_OT > hardcoded P10_OT,",
         "   the hardcode is bypassed and formula is used instead.",
     ]
 
