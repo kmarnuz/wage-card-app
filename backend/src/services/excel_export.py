@@ -96,7 +96,6 @@ def export_wage_cards_to_excel(cards: list[dict], group_by_tenure: bool = True) 
         Excel file as bytes
     """
     wb = Workbook()
-    wb.calculation_on_load = True
     ws = wb.active
     ws.title = "Wage Cards"
 
@@ -135,7 +134,7 @@ def export_wage_cards_to_excel(cards: list[dict], group_by_tenure: bool = True) 
                 if card.get("is_pt") or "PT" in str(card.get("short_bt", "")):
                     ws.cell(row=row_idx, column=col_idx, value=0)
                     continue
-                formula = f"=ROUND((({cl['basic']}{r}+{cl['flexi']}{r}+{cl['lta']}{r})*12/(52*{cl['weekly_hours']}{r}))*2,0)"
+                formula = f"=ROUND(({cl['basic']}{r}+{cl['flexi']}{r}+{cl['lta']}{r})*12/(52*{cl['weekly_hours']}{r})*2,0)"
             elif field_key == "pf_employee":
                 formula = f"=ROUND(MIN(12%*{cl['basic']}{r},1800),0)"
             elif field_key == "esic_employee":
