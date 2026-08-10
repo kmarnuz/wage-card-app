@@ -442,6 +442,7 @@ def export_excel(state: Optional[str] = None):
     filters = {"state": state} if state else {}
     cards = db.list_wage_cards(filters)
     if not cards: raise HTTPException(404, "No cards to export")
+    cards = [round_card(c) for c in cards]
     excel_bytes = export_wage_cards_to_excel(cards)
     fname = f"WageCards_{state or 'All'}_{datetime.utcnow().strftime('%Y%m%d')}.xlsx"
     save_audit_entry("DOWNLOAD", filename=fname, details=f"Exported {len(cards)} cards, filter: {state or 'All'}")

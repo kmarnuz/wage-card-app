@@ -137,21 +137,21 @@ def export_wage_cards_to_excel(cards: list[dict], group_by_tenure: bool = True) 
                     continue
                 formula = f"=ROUND((({cl['basic']}{r}+{cl['flexi']}{r}+{cl['lta']}{r})*12/(52*{cl['weekly_hours']}{r}))*2,0)"
             elif field_key == "pf_employee":
-                formula = f"=MIN(12%*{cl['basic']}{r},1800)"
+                formula = f"=ROUND(MIN(12%*{cl['basic']}{r},1800),0)"
             elif field_key == "esic_employee":
                 incl = f"{cl['basic']}{r}+{cl['flexi']}{r}+{cl['lta']}{r}"
                 formula = f"=IF({incl}>21000,0,ROUNDUP(({incl})*0.75/100,0))"
             elif field_key == "gross_deductions":
-                formula = f"={cl['pf_employee']}{r}+{cl['esic_employee']}{r}"
+                formula = f"=ROUND({cl['pf_employee']}{r}+{cl['esic_employee']}{r},0)"
             elif field_key == "net_salary":
-                formula = f"={cl['gross']}{r}-{cl['gross_deductions']}{r}"
+                formula = f"=ROUND({cl['gross']}{r}-{cl['gross_deductions']}{r},0)"
             elif field_key == "pf_employer":
-                formula = f"=MIN(13%*{cl['basic']}{r},1950)"
+                formula = f"=ROUND(MIN(13%*{cl['basic']}{r},1950),0)"
             elif field_key == "esic_employer":
                 incl = f"{cl['basic']}{r}+{cl['flexi']}{r}+{cl['lta']}{r}"
                 formula = f"=IF({incl}>21000,0,ROUNDUP(({incl})*3.25/100,0))"
             elif field_key == "ctc":
-                formula = f"={cl['gross']}{r}+{cl['pf_employer']}{r}+{cl['esic_employer']}{r}"
+                formula = f"=ROUND({cl['gross']}{r}+{cl['pf_employer']}{r}+{cl['esic_employer']}{r},0)"
             elif field_key == "ot_default":
                 if card.get("is_pt") or "PT" in str(card.get("short_bt", "")):
                     ws.cell(row=row_idx, column=col_idx, value=0)
@@ -166,7 +166,7 @@ def export_wage_cards_to_excel(cards: list[dict], group_by_tenure: bool = True) 
             elif field_key == "excluded_wages":
                 formula = f"={cl['ot_default']}{r}+{cl['nsa']}{r}+{cl['attendance_incentive']}{r}+{cl['hra']}{r}+{cl['conveyance']}{r}"
             elif field_key == "cap_50_amount":
-                formula = f"=50%*{cl['total_remuneration']}{r}"
+                formula = f"=ROUND(50%*{cl['total_remuneration']}{r},0)"
             elif field_key == "cap_50_met":
                 formula = f'=IF({cl["excluded_wages"]}{r}<={cl["cap_50_amount"]}{r},"Met","Not Met")'
             elif field_key == "mw_compliant":
