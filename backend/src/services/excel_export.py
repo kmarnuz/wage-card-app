@@ -214,6 +214,16 @@ def export_wage_cards_to_excel(cards: list[dict], group_by_tenure: bool = True) 
         col_letter = get_column_letter(col_idx)
         ws.column_dimensions[col_letter].width = max(len(header_name) + 2, 12)
 
+    # Add borders to all data cells
+    from openpyxl.styles import Border, Side
+    thin_border = Border(
+        left=Side(style='thin'), right=Side(style='thin'),
+        top=Side(style='thin'), bottom=Side(style='thin')
+    )
+    for row in ws.iter_rows(min_row=1, max_row=ws.max_row, max_col=len(HEADER_COLUMNS)):
+        for cell in row:
+            cell.border = thin_border
+
     # Freeze panes: Row 1 (header) stays on top, Column A stays on left
     ws.freeze_panes = "B2"
 
