@@ -329,6 +329,22 @@ def create_wage_card(request: WageCardRequest):
     db.put_audit_entry({"entity_type": "wage_card", "entity_id": card_id, "action": "create", "timestamp": now})
     return card
 
+# Fields that should always be whole numbers (no decimals)
+MONETARY_FIELDS = {'basic', 'flexi', 'lta', 'hra', 'conveyance', 'gross', 'minimum_wage',
+                   'per_hour_ot_total', 'per_hour_ot_included', 'per_hour_ot_balance',
+                   'pf_employee', 'esic_employee', 'gross_deductions', 'net_salary',
+                   'pf_employer', 'esic_employer', 'ctc', 'ot_default', 'nsa',
+                   'attendance_incentive', 'total_remuneration', 'included_wages',
+                   'excluded_wages', 'cap_50_amount', 'hol_wage', 'old_ot', 'old_hol',
+                   'bal_pay_ot', 'bal_pay_hol'}
+
+def round_card(card):
+    """Round all monetary fields to whole numbers."""
+    for key in MONETARY_FIELDS:
+        if key in card and isinstance(card[key], (int, float)):
+            card[key] = round(card[key])
+    return card
+
 @app.get("/api/wage-cards")
 def list_wage_cards(state: Optional[str] = None, city: Optional[str] = None,
                     business_title: Optional[str] = None, tenure_years: Optional[int] = None):
@@ -338,6 +354,7 @@ def list_wage_cards(state: Optional[str] = None, city: Optional[str] = None,
     if business_title: filters["business_title"] = business_title
     if tenure_years is not None: filters["tenure_years"] = tenure_years
     cards = db.list_wage_cards(filters)
+    cards = [round_card(c) for c in cards]
     return {"count": len(cards), "items": cards}
 
 @app.get("/api/wage-cards/{card_id}")
