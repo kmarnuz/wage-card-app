@@ -338,11 +338,21 @@ MONETARY_FIELDS = {'basic', 'flexi', 'lta', 'hra', 'conveyance', 'gross', 'minim
                    'excluded_wages', 'cap_50_amount', 'hol_wage', 'old_ot', 'old_hol',
                    'bal_pay_ot', 'bal_pay_hol'}
 
+# Entities+States where Holiday Wage columns should be blank
+BLANK_HOL_ENTITIES_STATES = {('INFC', 'MH'), ('INFC', 'GJ'), ('GSF HUB', 'MH'), ('GSF HUB', 'GJ')}
+
 def round_card(card):
-    """Round all monetary fields to whole numbers."""
+    """Round all monetary fields to whole numbers and blank hol wage for INFC/GSF HUB MH/GJ."""
     for key in MONETARY_FIELDS:
         if key in card and isinstance(card[key], (int, float)):
             card[key] = round(card[key])
+    # Blank Holiday Wage for INFC/GSF HUB in MH/GJ
+    entity = card.get('entity', '').upper()
+    state = card.get('state', '').upper()
+    if (entity, state) in BLANK_HOL_ENTITIES_STATES:
+        card['hol_wage'] = ''
+        card['old_hol'] = ''
+        card['bal_pay_hol'] = ''
     return card
 
 @app.get("/api/wage-cards")

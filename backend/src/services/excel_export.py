@@ -175,6 +175,12 @@ def export_wage_cards_to_excel(cards: list[dict], group_by_tenure: bool = True) 
                 incl = f"{cl['basic']}{r}+{cl['flexi']}{r}+{cl['lta']}{r}"
                 formula = f'=IF({incl}>={cl["minimum_wage"]}{r},"Yes","No")'
             elif field_key == "hol_wage":
+                # Blank for INFC/GSF HUB in MH/GJ states
+                entity_val = card.get("entity", "").upper()
+                state_val = card.get("state", "").upper()
+                if (entity_val, state_val) in {('INFC', 'MH'), ('INFC', 'GJ'), ('GSF HUB', 'MH'), ('GSF HUB', 'GJ')}:
+                    ws.cell(row=row_idx, column=col_idx, value="")
+                    continue
                 formula = f"=ROUND(({cl['basic']}{r}+{cl['flexi']}{r}+{cl['lta']}{r})*12/(52*{cl['weekly_hours']}{r})*1*{cl['daily_hours']}{r},0)"
             elif field_key == "old_ot":
                 if card.get("is_pt") or "PT" in str(card.get("short_bt", "")):
@@ -184,6 +190,12 @@ def export_wage_cards_to_excel(cards: list[dict], group_by_tenure: bool = True) 
                     ws.cell(row=row_idx, column=col_idx, value=value if value else "")
                 continue
             elif field_key == "old_hol":
+                # Blank for INFC/GSF HUB in MH/GJ states
+                entity_val = card.get("entity", "").upper()
+                state_val = card.get("state", "").upper()
+                if (entity_val, state_val) in {('INFC', 'MH'), ('INFC', 'GJ'), ('GSF HUB', 'MH'), ('GSF HUB', 'GJ')}:
+                    ws.cell(row=row_idx, column=col_idx, value="")
+                    continue
                 if card.get("is_pt") or "PT" in str(card.get("short_bt", "")):
                     ws.cell(row=row_idx, column=col_idx, value="")
                 else:
@@ -197,6 +209,12 @@ def export_wage_cards_to_excel(cards: list[dict], group_by_tenure: bool = True) 
                     ws.cell(row=row_idx, column=col_idx, value=f"=MAX(0,{cl['old_ot']}{r}-{cl['per_hour_ot_total']}{r})")
                 continue
             elif field_key == "bal_pay_hol":
+                # Blank for INFC/GSF HUB in MH/GJ states
+                entity_val = card.get("entity", "").upper()
+                state_val = card.get("state", "").upper()
+                if (entity_val, state_val) in {('INFC', 'MH'), ('INFC', 'GJ'), ('GSF HUB', 'MH'), ('GSF HUB', 'GJ')}:
+                    ws.cell(row=row_idx, column=col_idx, value="")
+                    continue
                 if card.get("is_pt") or "PT" in str(card.get("short_bt", "")):
                     ws.cell(row=row_idx, column=col_idx, value="")
                 else:
