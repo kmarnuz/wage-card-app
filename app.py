@@ -597,6 +597,11 @@ def generate_pt_cards(all_cards, engine, get_ptax_slabs, get_lwf_config):
                 else:
                     pt_gross = hardcoded_gross  # Use hardcoded value
         
+        # --- PT Attendance Incentive: 50% of matching Associate (same Entity/Site/Year Band) ---
+        # The source `card` IS the matching Associate for this Entity + Site + Year Band,
+        # so its attendance_incentive is exactly the reference value.
+        pt_attendance_incentive = round(card.get('attendance_incentive', 0) * 0.5)
+
         # Now split and calculate the PT card
         mw = card.get('minimum_wage', 0)
         is_mh_wb = state in ('MH', 'WB')
@@ -631,13 +636,20 @@ def generate_pt_cards(all_cards, engine, get_ptax_slabs, get_lwf_config):
             minimum_wage=mw, mw_effective_date=card.get('mw_effective_date', ''),
             basic=split['basic'], flexi=split['flexi'], lta=split['lta'],
             hra=split['hra'], conveyance=split['conveyance'],
-            attendance_incentive=0, tenure_years=tenure,
+            attendance_incentive=pt_attendance_incentive, tenure_years=tenure,
         )
         
         ptax = get_ptax_slabs(card.get('state', ''))
         lwf = get_lwf_config(card.get('state', ''))
         result = engine.calculate(wage_input, ptax, lwf)
-        
+
+        # PT has no OT/NSA. Recompute remuneration-dependent values without OT.
+        pt_total_remuneration = result.ctc + result.attendance_incentive
+        pt_excluded_wages = result.attendance_incentive + result.hra + result.conveyance
+        pt_cap_50_amount = round(0.50 * pt_total_remuneration)
+        pt_included_pct = round(result.included_wages / pt_total_remuneration, 4) if pt_total_remuneration else 0
+        pt_cap_50_met = pt_excluded_wages <= pt_cap_50_amount
+
         pt_card = {
             "id": f"pt_{card.get('id', '')}",
             "entity": card.get('entity', ''), "state": card.get('state', ''),
@@ -663,12 +675,16 @@ def generate_pt_cards(all_cards, engine, get_ptax_slabs, get_lwf_config):
             "pf_employer": result.pf_employer, "esic_employer": result.esic_employer,
             "lwf_employer": "As applicable", "ctc": result.ctc,
             "ot_default": 0,  # No OT for PT
-            "total_remuneration": result.total_remuneration,
+            "nsa": 0,
+            "attendance_incentive": result.attendance_incentive,
+            # PT has no OT/NSA: Total Remuneration = CTC + Attendance Incentive
+            "total_remuneration": pt_total_remuneration,
             "included_wages": result.included_wages,
-            "included_pct": round(result.included_pct, 4),
-            "excluded_wages": result.excluded_wages,
-            "cap_50_amount": result.cap_50_amount,
-            "cap_50_met": result.cap_50_met, "mw_compliant": "N/A",
+            "included_pct": pt_included_pct,
+            # PT Excluded = Attendance Incentive + HRA + Conveyance (no OT/NSA)
+            "excluded_wages": pt_excluded_wages,
+            "cap_50_amount": pt_cap_50_amount,
+            "cap_50_met": pt_cap_50_met, "mw_compliant": "N/A",
             "is_pt": True, "pt_method": method,
             "old_ot": 0, "old_hol": 0, "bal_pay_ot": 0, "bal_pay_hol": 0, "hol_wage": 0,
         }
