@@ -92,8 +92,15 @@ def enforce_parity(all_cards, engine_ref, get_ptax_fn, get_lwf_fn):
 
         # For each role+tenure combo, enforce highest Gross with IDENTICAL split
         for (bt, tenure), cards_in_combo in role_tenure_groups.items():
-            # Find the reference card (highest Gross)
-            ref_card = max(cards_in_combo, key=lambda c: c.get('gross', 0))
+            # Find the reference card: highest Gross, and on a Gross tie prefer the
+            # higher-MW site (its split is MW-driven / structurally correct — e.g. more
+            # in LTA). Lower-MW sites in the group then copy this exact split verbatim,
+            # even though their own MW is lower (they become over-compliant). This keeps
+            # every site in the parity group on an identical component split.
+            ref_card = max(
+                cards_in_combo,
+                key=lambda c: (c.get('gross', 0), c.get('minimum_wage', 0))
+            )
             max_gross = ref_card.get('gross', 0)
             ref_basic = ref_card.get('basic', 0)
             ref_flexi = ref_card.get('flexi', 0)
@@ -107,31 +114,13 @@ def enforce_parity(all_cards, engine_ref, get_ptax_fn, get_lwf_fn):
 
                 state = card.get('state', '')
 
-                # Desired split = reference split (keeps Gross identical for parity)
+                # Copy the EXACT reference split verbatim (Gross + component split
+                # identical across the whole parity group, regardless of this site's
+                # own MW). Lower-MW sites become over-compliant, which is intended.
                 use_basic, use_flexi = ref_basic, ref_flexi
                 use_lta, use_hra, use_conveyance = ref_lta, ref_hra, ref_conveyance
 
-                # MW-compliance guard: if this site's MW is higher than the reference
-                # split supports, shift the shortfall from HRA/Conveyance into LTA so
-                # Included Wages (Basic+Flexi+LTA) >= MW. Gross stays identical.
-                target_mw = card.get('minimum_wage', 0)
-                included_ref = ref_basic + ref_flexi + ref_lta
-                shortfall = target_mw - included_ref
-                if shortfall > 0:
-                    moved = 0
-                    # Pull first from HRA, then Conveyance (both are Excluded, so Gross unchanged)
-                    take_hra = min(shortfall, use_hra)
-                    use_hra -= take_hra
-                    moved += take_hra
-                    shortfall -= take_hra
-                    if shortfall > 0:
-                        take_conv = min(shortfall, use_conveyance)
-                        use_conveyance -= take_conv
-                        moved += take_conv
-                        shortfall -= take_conv
-                    use_lta = ref_lta + moved
-
-                # Update only if the card's current split differs from the desired split
+                # Update only if the card's current split differs from the reference split
                 needs_update = (
                     card.get('gross', 0) < max_gross
                     or card.get('basic', 0) != use_basic
