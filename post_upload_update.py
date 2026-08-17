@@ -45,7 +45,7 @@ ai_region_data = {
     ("INFC","DEL4","Associate"): {"ai":3250,"region":"North"}, ("INFC","DEL4","PA"): {"ai":3250,"region":"North"}, ("INFC","DEL4","FC-Interpreter"): {"ai":0,"region":"North"},
     ("INFC","DEL5","Associate"): {"ai":3250,"region":"North"}, ("INFC","DEL5","PA"): {"ai":3250,"region":"North"}, ("INFC","DEL5","FC-Interpreter"): {"ai":0,"region":"North"},
     ("INFC","DEX3","Associate"): {"ai":1000,"region":"North"}, ("INFC","DEX3","PA"): {"ai":2400,"region":"North"},
-    ("INFC","HDO3","Associate"): {"ai":3400,"region":"North"}, ("INFC","HDO3","PA"): {"ai":3250,"region":"North"},
+    ("INFC","HHS6","Associate"): {"ai":3400,"region":"North"}, ("INFC","HHS6","PA"): {"ai":3250,"region":"North"},
     ("INFC","HYD3","Associate"): {"ai":2200,"region":"South"}, ("INFC","HYD3","PA"): {"ai":1850,"region":"South"}, ("INFC","HYD3","FC-Interpreter"): {"ai":0,"region":"South"},
     ("INFC","HYD8","Associate"): {"ai":2200,"region":"South"}, ("INFC","HYD8","PA"): {"ai":1850,"region":"South"}, ("INFC","HYD8","FC-Interpreter"): {"ai":0,"region":"South"},
     ("INFC","ISK3","Associate"): {"ai":2450,"region":"West"}, ("INFC","ISK3","PA"): {"ai":2400,"region":"West"}, ("INFC","ISK3","FC-Interpreter"): {"ai":0,"region":"West"},
