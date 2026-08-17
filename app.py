@@ -102,22 +102,46 @@ def enforce_parity(all_cards, engine_ref, get_ptax_fn, get_lwf_fn):
             ref_conveyance = ref_card.get('conveyance', 0)
 
             for card in cards_in_combo:
-                current_gross = card.get('gross', 0)
-                # Check if components differ (even if Gross is same, split might differ)
-                needs_update = (
-                    current_gross < max_gross
-                    or card.get('basic', 0) != ref_basic
-                    or card.get('flexi', 0) != ref_flexi
-                    or card.get('lta', 0) != ref_lta
-                    or card.get('hra', 0) != ref_hra
-                    or card.get('conveyance', 0) != ref_conveyance
-                )
-
-                if card is ref_card or not needs_update:
+                if card is ref_card:
                     continue
 
-                # Copy EXACT component split from reference card (bypass MW split logic)
                 state = card.get('state', '')
+
+                # Desired split = reference split (keeps Gross identical for parity)
+                use_basic, use_flexi = ref_basic, ref_flexi
+                use_lta, use_hra, use_conveyance = ref_lta, ref_hra, ref_conveyance
+
+                # MW-compliance guard: if this site's MW is higher than the reference
+                # split supports, shift the shortfall from HRA/Conveyance into LTA so
+                # Included Wages (Basic+Flexi+LTA) >= MW. Gross stays identical.
+                target_mw = card.get('minimum_wage', 0)
+                included_ref = ref_basic + ref_flexi + ref_lta
+                shortfall = target_mw - included_ref
+                if shortfall > 0:
+                    moved = 0
+                    # Pull first from HRA, then Conveyance (both are Excluded, so Gross unchanged)
+                    take_hra = min(shortfall, use_hra)
+                    use_hra -= take_hra
+                    moved += take_hra
+                    shortfall -= take_hra
+                    if shortfall > 0:
+                        take_conv = min(shortfall, use_conveyance)
+                        use_conveyance -= take_conv
+                        moved += take_conv
+                        shortfall -= take_conv
+                    use_lta = ref_lta + moved
+
+                # Update only if the card's current split differs from the desired split
+                needs_update = (
+                    card.get('gross', 0) < max_gross
+                    or card.get('basic', 0) != use_basic
+                    or card.get('flexi', 0) != use_flexi
+                    or card.get('lta', 0) != use_lta
+                    or card.get('hra', 0) != use_hra
+                    or card.get('conveyance', 0) != use_conveyance
+                )
+                if not needs_update:
+                    continue
 
                 wage_input = WageInput(
                     state=state, city=card.get('city', ''),
@@ -129,8 +153,8 @@ def enforce_parity(all_cards, engine_ref, get_ptax_fn, get_lwf_fn):
                     daily_hours=card.get('daily_hours', 9),
                     minimum_wage=card.get('minimum_wage', 0),
                     mw_effective_date=card.get('mw_effective_date', ''),
-                    basic=ref_basic, flexi=ref_flexi, lta=ref_lta,
-                    hra=ref_hra, conveyance=ref_conveyance,
+                    basic=use_basic, flexi=use_flexi, lta=use_lta,
+                    hra=use_hra, conveyance=use_conveyance,
                     attendance_incentive=card.get('attendance_incentive', 0),
                     tenure_years=card.get('tenure_years', 0),
                 )
