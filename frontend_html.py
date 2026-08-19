@@ -128,8 +128,11 @@ tr:nth-child(even){background:#f8f9fa}
 <button class="btn btn-s" onclick="toggleLogic()" style="font-size:11px;padding:5px 10px">📖 Logic Depository</button>
 <a href="/api/ai-depository/download" class="btn btn-s" style="text-decoration:none;font-size:11px;padding:5px 10px;margin-left:6px;background:#e8f5e9;border:1px solid #4caf50">📋 AI Depository</a>
 <button class="btn btn-s" onclick="uploadAiDep()" style="font-size:11px;padding:5px 10px;margin-left:6px;background:#fff3e0;border:1px solid #ff9800">📤 Update AI Depository</button>
+<a href="/api/old-ot-hol-depository/download" class="btn btn-s" style="text-decoration:none;font-size:11px;padding:5px 10px;margin-left:6px;background:#e3f2fd;border:1px solid #2196f3">📋 Old OT/Hol</a>
+<button class="btn btn-s" onclick="uploadOtHolDep()" style="font-size:11px;padding:5px 10px;margin-left:6px;background:#fce4ec;border:1px solid #e91e63">📤 Update Old OT/Hol</button>
 <input type="file" id="ptax-file" accept=".xlsx,.xlsb" style="display:none" onchange="submitPtax(this)">
 <input type="file" id="ai-dep-file" accept=".xlsx" style="display:none" onchange="submitAiDep(this)">
+<input type="file" id="ot-hol-dep-file" accept=".xlsx" style="display:none" onchange="submitOtHolDep(this)">
 </div>
 
 <!-- LOGIC DEPOSITORY (hidden by default) -->
@@ -366,6 +369,24 @@ async function submitAiDep(input){
   const r=await fetch('/api/ai-depository/upload',{method:'POST',body:formData});
   const d=await r.json();
   if(r.ok){alert('✅ AI Depository updated: '+d.entries+' entries, '+d.cards_updated+' cards updated');}
+  else{alert('❌ '+(d.detail||'Upload failed'));}
+  input.value='';
+  loadData();
+}
+function uploadOtHolDep(){
+  const pwd=prompt('Enter password to update Old OT/Hol Depository:');
+  if(!pwd)return;
+  window._otHolDepPwd=pwd;
+  document.getElementById('ot-hol-dep-file').click();
+}
+async function submitOtHolDep(input){
+  const file=input.files[0];if(!file)return;
+  const formData=new FormData();
+  formData.append('file',file);
+  formData.append('password',window._otHolDepPwd||'');
+  const r=await fetch('/api/old-ot-hol-depository/upload',{method:'POST',body:formData});
+  const d=await r.json();
+  if(r.ok){alert('✅ Old OT/Hol Depository updated: '+d.entries+' entries, '+d.cards_updated+' cards updated');}
   else{alert('❌ '+(d.detail||'Upload failed'));}
   input.value='';
   loadData();
