@@ -923,6 +923,9 @@ async def upload_wage_cards(file: UploadFile = File(...), password: str = Form("
         db.put_wage_card(pc, skip_save=True)
     imported += len(pt_cards)
 
+    # Apply AI Depository (Attendance Incentive + Region) to all cards
+    ai_dep_applied = apply_ai_depository_to_cards()
+
     # Save all data once at the end
     db.save()
 
@@ -931,7 +934,7 @@ async def upload_wage_cards(file: UploadFile = File(...), password: str = Form("
     saved_path = os.path.join(UPLOADS_DIR, saved_filename)
     with open(saved_path, 'wb') as f:
         f.write(contents)
-    save_audit_entry("UPLOAD", filename=saved_filename, details=f"Imported {imported} cards, {len(errors)} errors")
+    save_audit_entry("UPLOAD", filename=saved_filename, details=f"Imported {imported} cards, {len(errors)} errors, AI applied to {ai_dep_applied}")
 
     return {
         "status": "completed",
@@ -1560,6 +1563,9 @@ async def upload_revision(file: UploadFile = File(...), password: str = Form("")
     pt_cards = generate_pt_cards(all_non_pt, engine, get_ptax_slabs, get_lwf_config)
     for pc in pt_cards:
         db.put_wage_card(pc, skip_save=True)
+
+    # Apply AI Depository (Attendance Incentive + Region) after MW revision
+    apply_ai_depository_to_cards()
 
     db.save()
 
@@ -2211,6 +2217,123 @@ def export_alfa_rate_card():
         media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         headers={"Content-Disposition": f"attachment; filename={fname}"}
     )
+
+# --- Attendance Incentive Depository ---
+AI_DEPOSITORY_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'ai_depository.json')
+
+def load_ai_depository():
+    """Load AI depository from JSON file."""
+    if os.path.exists(AI_DEPOSITORY_FILE):
+        with open(AI_DEPOSITORY_FILE, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    return {}
+
+def apply_ai_depository_to_cards():
+    """Apply AI + Region from depository to all matching cards (all year bands)."""
+    dep = load_ai_depository()
+    if not dep:
+        return 0
+    all_cards = db.list_wage_cards()
+    updated = 0
+    for card in all_cards:
+        entity = card.get('entity', '')
+        site = card.get('site_codes', '')
+        short_bt = card.get('short_bt', '')
+        key = f"{entity}|{site}|{short_bt}"
+        if key in dep:
+            info = dep[key]
+            card['attendance_incentive'] = info['ai']
+            card['region'] = info['region']
+            db.put_wage_card(card, skip_save=True)
+            updated += 1
+    if updated > 0:
+        db.save()
+    return updated
+
+@app.post("/api/ai-depository/upload")
+async def upload_ai_depository(file: UploadFile = File(...), password: str = Form("")):
+    """Upload new AI Depository Excel. Requires password. Auto-applies to all cards."""
+    if password != get_upload_password():
+        raise HTTPException(403, "Invalid password.")
+    import openpyxl
+    contents = await file.read()
+    wb = openpyxl.load_workbook(io.BytesIO(contents))
+    ws = wb.active
+
+    # Parse: Entity, State, City, Site Code, MW Zone, Region, MW Category, Short BT, Tenure, AI
+    dep = {}
+    for row in ws.iter_rows(min_row=2, values_only=True):
+        if not row or len(row) < 10:
+            continue
+        entity = str(row[0] or '').strip()
+        site_code = str(row[3] or '').strip()
+        region = str(row[5] or '').strip()
+        short_bt = str(row[7] or '').strip()
+        ai = row[9]
+        if not entity or not site_code or not short_bt:
+            continue
+        try:
+            ai = int(float(ai)) if ai else 0
+        except (ValueError, TypeError):
+            ai = 0
+        key = f"{entity}|{site_code}|{short_bt}"
+        dep[key] = {"ai": ai, "region": region}
+
+    # Save depository
+    with open(AI_DEPOSITORY_FILE, 'w', encoding='utf-8') as f:
+        json.dump(dep, f, indent=2)
+
+    # Apply to all cards
+    updated = apply_ai_depository_to_cards()
+    save_audit_entry("UPLOAD", filename=file.filename, details=f"AI Depository: {len(dep)} entries, applied to {updated} cards")
+    return {"status": "success", "entries": len(dep), "cards_updated": updated}
+
+@app.get("/api/ai-depository/download")
+def download_ai_depository():
+    """Download current AI Depository as Excel."""
+    import openpyxl
+    from openpyxl.styles import Font, Border, Side, PatternFill
+    dep = load_ai_depository()
+    if not dep:
+        raise HTTPException(404, "No AI Depository found.")
+
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "AI Depository"
+    headers = ["Entity", "Site Code", "Short BT", "Attendance Incentive", "Region"]
+    hdr_fill = PatternFill(start_color="232F3E", end_color="232F3E", fill_type="solid")
+    hdr_font = Font(bold=True, size=10, color="FFFFFF")
+    thin = Border(left=Side('thin'), right=Side('thin'), top=Side('thin'), bottom=Side('thin'))
+    for col, h in enumerate(headers, 1):
+        c = ws.cell(row=1, column=col, value=h)
+        c.font = hdr_font
+        c.fill = hdr_fill
+        c.border = thin
+
+    for idx, (key, val) in enumerate(sorted(dep.items()), 2):
+        parts = key.split("|")
+        ws.cell(row=idx, column=1, value=parts[0]).border = thin
+        ws.cell(row=idx, column=2, value=parts[1]).border = thin
+        ws.cell(row=idx, column=3, value=parts[2]).border = thin
+        ws.cell(row=idx, column=4, value=val.get('ai', 0)).border = thin
+        ws.cell(row=idx, column=5, value=val.get('region', '')).border = thin
+
+    for col in range(1, 6):
+        ws.column_dimensions[openpyxl.utils.get_column_letter(col)].width = 18
+
+    output = io.BytesIO()
+    wb.save(output)
+    output.seek(0)
+    return StreamingResponse(output,
+        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        headers={"Content-Disposition": "attachment; filename=AI_Depository_Current.xlsx"})
+
+@app.get("/api/ai-depository/status")
+def ai_depository_status():
+    """Get AI depository stats."""
+    dep = load_ai_depository()
+    return {"entries": len(dep), "file_exists": os.path.exists(AI_DEPOSITORY_FILE)}
+
 @app.get("/", response_class=HTMLResponse)
 def serve_frontend():
     return FRONTEND_HTML

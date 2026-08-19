@@ -126,7 +126,10 @@ tr:nth-child(even){background:#f8f9fa}
 <a href="/api/audit-trail/download/ALFA_PTAX_Depository_SlotWise.xlsx" class="btn btn-s" style="text-decoration:none;font-size:11px;padding:5px 10px;margin-right:6px">📊 ALFA P-TAX</a>
 <button class="btn btn-s" onclick="uploadPtax()" style="font-size:11px;padding:5px 10px;margin-right:6px">📤 Update P-TAX</button>
 <button class="btn btn-s" onclick="toggleLogic()" style="font-size:11px;padding:5px 10px">📖 Logic Depository</button>
+<a href="/api/ai-depository/download" class="btn btn-s" style="text-decoration:none;font-size:11px;padding:5px 10px;margin-left:6px;background:#e8f5e9;border:1px solid #4caf50">📋 AI Depository</a>
+<button class="btn btn-s" onclick="uploadAiDep()" style="font-size:11px;padding:5px 10px;margin-left:6px;background:#fff3e0;border:1px solid #ff9800">📤 Update AI Depository</button>
 <input type="file" id="ptax-file" accept=".xlsx,.xlsb" style="display:none" onchange="submitPtax(this)">
+<input type="file" id="ai-dep-file" accept=".xlsx" style="display:none" onchange="submitAiDep(this)">
 </div>
 
 <!-- LOGIC DEPOSITORY (hidden by default) -->
@@ -348,6 +351,24 @@ async function submitPtax(input){
   if(r.ok){alert('✅ P-TAX updated: '+d.states_updated+' states');}
   else{alert('❌ '+d.detail);}
   input.value='';
+}
+function uploadAiDep(){
+  const pwd=prompt('Enter password to update AI Depository:');
+  if(!pwd)return;
+  window._aiDepPwd=pwd;
+  document.getElementById('ai-dep-file').click();
+}
+async function submitAiDep(input){
+  const file=input.files[0];if(!file)return;
+  const formData=new FormData();
+  formData.append('file',file);
+  formData.append('password',window._aiDepPwd||'');
+  const r=await fetch('/api/ai-depository/upload',{method:'POST',body:formData});
+  const d=await r.json();
+  if(r.ok){alert('✅ AI Depository updated: '+d.entries+' entries, '+d.cards_updated+' cards updated');}
+  else{alert('❌ '+(d.detail||'Upload failed'));}
+  input.value='';
+  loadData();
 }
 </script>
 </body></html>"""
