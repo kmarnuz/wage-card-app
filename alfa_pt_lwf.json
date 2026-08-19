@@ -384,17 +384,17 @@
     "lwf_p8": 0
   },
   "GUJRAT|SURAT": {
-    "pt_p10": 16,
-    "pt_p5": 8,
-    "pt_p8": 16,
+    "pt_p10": 20,
+    "pt_p5": 10,
+    "pt_p8": 20,
     "lwf_p10": 0,
     "lwf_p5": 0,
     "lwf_p8": 0
   },
   "GJ|SURAT": {
-    "pt_p10": 16,
-    "pt_p5": 8,
-    "pt_p8": 16,
+    "pt_p10": 20,
+    "pt_p5": 10,
+    "pt_p8": 20,
     "lwf_p10": 0,
     "lwf_p5": 0,
     "lwf_p8": 0
