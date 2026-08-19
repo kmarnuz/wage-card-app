@@ -1,0 +1,3478 @@
+{
+  "AMZL|GNTD|AMZ ADE": {
+    "ai": 800,
+    "region": "South"
+  },
+  "AMZL|GNTD|Associate": {
+    "ai": 2400,
+    "region": "South"
+  },
+  "AMZL|GNTD|Associate PT": {
+    "ai": 1200,
+    "region": "South"
+  },
+  "AMZL|GNTD|CSDL": {
+    "ai": 800,
+    "region": "South"
+  },
+  "AMZL|GNTD|PA": {
+    "ai": 800,
+    "region": "South"
+  },
+  "AMZL|VGAH|AMZ ADE": {
+    "ai": 800,
+    "region": "South"
+  },
+  "AMZL|VGAH|Associate": {
+    "ai": 2300,
+    "region": "South"
+  },
+  "AMZL|VGAH|Associate PT": {
+    "ai": 1150,
+    "region": "South"
+  },
+  "AMZL|VGAH|CSDL": {
+    "ai": 800,
+    "region": "South"
+  },
+  "AMZL|VGAH|PA": {
+    "ai": 800,
+    "region": "South"
+  },
+  "AMZL|VTZH|AMZ ADE": {
+    "ai": 1100,
+    "region": "South"
+  },
+  "AMZL|VTZH|Associate": {
+    "ai": 3450,
+    "region": "South"
+  },
+  "AMZL|VTZH|Associate PT": {
+    "ai": 1725,
+    "region": "South"
+  },
+  "AMZL|VTZH|CSDL": {
+    "ai": 1100,
+    "region": "South"
+  },
+  "AMZL|VTZH|PA": {
+    "ai": 1100,
+    "region": "South"
+  },
+  "UFF|FVTG|Associate": {
+    "ai": 1750,
+    "region": "South"
+  },
+  "UFF|FVTG|Associate PT": {
+    "ai": 875,
+    "region": "South"
+  },
+  "AMZL|GAUA|AMZ ADE": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|GAUA|Associate": {
+    "ai": 3250,
+    "region": "North"
+  },
+  "AMZL|GAUA|Associate PT": {
+    "ai": 1625,
+    "region": "North"
+  },
+  "AMZL|GAUA|CSDL": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|GAUA|PA": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|PATD|AMZ ADE": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|PATD|Associate": {
+    "ai": 2250,
+    "region": "North"
+  },
+  "AMZL|PATD|Associate PT": {
+    "ai": 1125,
+    "region": "North"
+  },
+  "AMZL|PATD|CSDL": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|PATD|PA": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "UFF|UDL4|PA": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "UFF|PDL2|ADE": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "UFF|UDL4|ADE": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|DELF|AMZ ADE": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|DELG|AMZ ADE": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|DELK|AMZ ADE": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|DELL|AMZ ADE": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|DELN|AMZ ADE": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|DELO|AMZ ADE": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|DELR|AMZ ADE": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|DELT|AMZ ADE": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NCRG|AMZ ADE": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NCTC|AMZ ADE": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NCTD|AMZ ADE": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NCTG|AMZ ADE": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NDBA|AMZ ADE": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NZML|AMZ ADE": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "INFC|DEX3|Associate": {
+    "ai": 1600,
+    "region": "North"
+  },
+  "INFC|PNQ2|Associate": {
+    "ai": 1600,
+    "region": "North"
+  },
+  "ATS|GURV|Associate": {
+    "ai": 1600,
+    "region": "North"
+  },
+  "AMZL|DELF|Associate": {
+    "ai": 5200,
+    "region": "North"
+  },
+  "AMZL|DELG|Associate": {
+    "ai": 5200,
+    "region": "North"
+  },
+  "AMZL|DELK|Associate": {
+    "ai": 5200,
+    "region": "North"
+  },
+  "AMZL|DELL|Associate": {
+    "ai": 5200,
+    "region": "North"
+  },
+  "AMZL|DELN|Associate": {
+    "ai": 5200,
+    "region": "North"
+  },
+  "AMZL|DELO|Associate": {
+    "ai": 5200,
+    "region": "North"
+  },
+  "AMZL|DELR|Associate": {
+    "ai": 5200,
+    "region": "North"
+  },
+  "AMZL|DELT|Associate": {
+    "ai": 5200,
+    "region": "North"
+  },
+  "AMZL|NCRG|Associate": {
+    "ai": 5200,
+    "region": "North"
+  },
+  "AMZL|NCTC|Associate": {
+    "ai": 5200,
+    "region": "North"
+  },
+  "AMZL|NCTD|Associate": {
+    "ai": 5200,
+    "region": "North"
+  },
+  "AMZL|NCTG|Associate": {
+    "ai": 5200,
+    "region": "North"
+  },
+  "AMZL|NDBA|Associate": {
+    "ai": 5200,
+    "region": "North"
+  },
+  "AMZL|NZML|Associate": {
+    "ai": 5200,
+    "region": "North"
+  },
+  "UFF|PDL2|Associate": {
+    "ai": 2000,
+    "region": "North"
+  },
+  "UFF|UDL4|Associate": {
+    "ai": 2000,
+    "region": "North"
+  },
+  "ATS|GURV|Associate PT": {
+    "ai": 1600,
+    "region": "North"
+  },
+  "AMZL|DELF|Associate PT": {
+    "ai": 2600,
+    "region": "North"
+  },
+  "AMZL|DELG|Associate PT": {
+    "ai": 2600,
+    "region": "North"
+  },
+  "AMZL|DELK|Associate PT": {
+    "ai": 2600,
+    "region": "North"
+  },
+  "AMZL|DELL|Associate PT": {
+    "ai": 2600,
+    "region": "North"
+  },
+  "AMZL|DELN|Associate PT": {
+    "ai": 2600,
+    "region": "North"
+  },
+  "AMZL|DELO|Associate PT": {
+    "ai": 2600,
+    "region": "North"
+  },
+  "AMZL|DELR|Associate PT": {
+    "ai": 2600,
+    "region": "North"
+  },
+  "AMZL|DELT|Associate PT": {
+    "ai": 2600,
+    "region": "North"
+  },
+  "AMZL|NCRG|Associate PT": {
+    "ai": 2600,
+    "region": "North"
+  },
+  "AMZL|NCTC|Associate PT": {
+    "ai": 2600,
+    "region": "North"
+  },
+  "AMZL|NCTD|Associate PT": {
+    "ai": 2600,
+    "region": "North"
+  },
+  "AMZL|NCTG|Associate PT": {
+    "ai": 2600,
+    "region": "North"
+  },
+  "AMZL|NDBA|Associate PT": {
+    "ai": 2600,
+    "region": "North"
+  },
+  "AMZL|NZML|Associate PT": {
+    "ai": 2600,
+    "region": "North"
+  },
+  "UFF|PDL2|Associate PT": {
+    "ai": 1000,
+    "region": "North"
+  },
+  "UFF|UDL4|Associate PT": {
+    "ai": 1000,
+    "region": "North"
+  },
+  "AMZL|DELF|CSDL": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|DELG|CSDL": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|DELK|CSDL": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|DELL|CSDL": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|DELN|CSDL": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|DELO|CSDL": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|DELR|CSDL": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|DELT|CSDL": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NCRG|CSDL": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NCTC|CSDL": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NCTD|CSDL": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NCTG|CSDL": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NZML|CSDL": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "INFC|DEX3|PA": {
+    "ai": 3250,
+    "region": "North"
+  },
+  "INFC|PNQ2|PA": {
+    "ai": 3250,
+    "region": "North"
+  },
+  "ATS|GURV|PA": {
+    "ai": 2250,
+    "region": "North"
+  },
+  "AMZL|DELF|PA": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|DELG|PA": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|DELK|PA": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|DELL|PA": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|DELN|PA": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|DELO|PA": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|DELR|PA": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|DELT|PA": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NCRG|PA": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NCTC|PA": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NCTD|PA": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NCTG|PA": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NDBA|PA": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NZML|PA": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "ATS|GURV|SC Supervisor": {
+    "ai": 0,
+    "region": "North"
+  },
+  "ATS|GURV|SC-Interpreter": {
+    "ai": 2250,
+    "region": "North"
+  },
+  "AMZL|AMDE|AMZ ADE": {
+    "ai": 1100,
+    "region": "West"
+  },
+  "AMZL|GNNJ|AMZ ADE": {
+    "ai": 1100,
+    "region": "West"
+  },
+  "AMZL|GNNT|AMZ ADE": {
+    "ai": 1100,
+    "region": "West"
+  },
+  "INFC|AMD2|Associate": {
+    "ai": 2200,
+    "region": "West"
+  },
+  "ATS|MAMA|Associate": {
+    "ai": 2200,
+    "region": "West"
+  },
+  "AMZL|AMDE|Associate": {
+    "ai": 2650,
+    "region": "West"
+  },
+  "AMZL|GNNJ|Associate": {
+    "ai": 2650,
+    "region": "West"
+  },
+  "AMZL|GNNT|Associate": {
+    "ai": 2650,
+    "region": "West"
+  },
+  "UFF|UAM1|Associate": {
+    "ai": 2950,
+    "region": "West"
+  },
+  "ATS|MAMA|Associate PT": {
+    "ai": 2300,
+    "region": "West"
+  },
+  "AMZL|AMDE|Associate PT": {
+    "ai": 1325,
+    "region": "West"
+  },
+  "AMZL|GNNJ|Associate PT": {
+    "ai": 1325,
+    "region": "West"
+  },
+  "AMZL|GNNT|Associate PT": {
+    "ai": 1325,
+    "region": "West"
+  },
+  "UFF|UAM1|Associate PT": {
+    "ai": 1475,
+    "region": "West"
+  },
+  "AMZL|AMDE|CSDL": {
+    "ai": 1100,
+    "region": "West"
+  },
+  "AMZL|GNNJ|CSDL": {
+    "ai": 1100,
+    "region": "West"
+  },
+  "AMZL|GNNT|CSDL": {
+    "ai": 1100,
+    "region": "West"
+  },
+  "INFC|AMD2|FC-Interpreter": {
+    "ai": 1900,
+    "region": "West"
+  },
+  "INFC|AMD2|PA": {
+    "ai": 1900,
+    "region": "West"
+  },
+  "ATS|MAMA|PA": {
+    "ai": 2100,
+    "region": "West"
+  },
+  "AMZL|AMDE|PA": {
+    "ai": 1100,
+    "region": "West"
+  },
+  "AMZL|GNNJ|PA": {
+    "ai": 1100,
+    "region": "West"
+  },
+  "AMZL|GNNT|PA": {
+    "ai": 1100,
+    "region": "West"
+  },
+  "UFF|UAM1|PA": {
+    "ai": 1100,
+    "region": "West"
+  },
+  "AMZL|BDQE|AMZ ADE": {
+    "ai": 1100,
+    "region": "West"
+  },
+  "AMZL|BDQE|Associate": {
+    "ai": 3250,
+    "region": "West"
+  },
+  "AMZL|BDQE|Associate PT": {
+    "ai": 1625,
+    "region": "West"
+  },
+  "AMZL|BDQE|CSDL": {
+    "ai": 1100,
+    "region": "West"
+  },
+  "AMZL|BDQE|PA": {
+    "ai": 1100,
+    "region": "West"
+  },
+  "ATS|MSTA|Associate": {
+    "ai": 2050,
+    "region": "West"
+  },
+  "ATS|MSTA|Associate PT": {
+    "ai": 2150,
+    "region": "West"
+  },
+  "ATS|MSTA|PA": {
+    "ai": 1700,
+    "region": "West"
+  },
+  "AMZL|FADA|AMZ ADE": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|FADA|Associate": {
+    "ai": 5200,
+    "region": "North"
+  },
+  "AMZL|FADA|Associate PT": {
+    "ai": 2600,
+    "region": "North"
+  },
+  "AMZL|FADA|CSDL": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|FADA|PA": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "UFF|PDL1|ADE": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "UFF|PDL5|ADE": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|DELH|AMZ ADE": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|DLIH|AMZ ADE": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NCT2|AMZ ADE": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NZMN|AMZ ADE": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "INFC|DED3|Associate": {
+    "ai": 3400,
+    "region": "North"
+  },
+  "INFC|DED4|Associate": {
+    "ai": 3400,
+    "region": "North"
+  },
+  "INFC|DED5|Associate": {
+    "ai": 3400,
+    "region": "North"
+  },
+  "INFC|DEL2|Associate": {
+    "ai": 3400,
+    "region": "North"
+  },
+  "INFC|DEL4|Associate": {
+    "ai": 3400,
+    "region": "North"
+  },
+  "INFC|DEL5|Associate": {
+    "ai": 3400,
+    "region": "North"
+  },
+  "INFC|HHS6|Associate": {
+    "ai": 3400,
+    "region": "North"
+  },
+  "AMZL|DELH|Associate": {
+    "ai": 5200,
+    "region": "North"
+  },
+  "AMZL|DLIH|Associate": {
+    "ai": 5200,
+    "region": "North"
+  },
+  "AMZL|NCT2|Associate": {
+    "ai": 5200,
+    "region": "North"
+  },
+  "AMZL|NZMN|Associate": {
+    "ai": 5200,
+    "region": "North"
+  },
+  "UFF|PDL1|Associate": {
+    "ai": 2000,
+    "region": "North"
+  },
+  "UFF|PDL5|Associate": {
+    "ai": 2000,
+    "region": "North"
+  },
+  "INFC|DED3|Associate PT": {
+    "ai": 1700,
+    "region": "North"
+  },
+  "AMZL|DELH|Associate PT": {
+    "ai": 2600,
+    "region": "North"
+  },
+  "AMZL|DLIH|Associate PT": {
+    "ai": 2600,
+    "region": "North"
+  },
+  "AMZL|NCT2|Associate PT": {
+    "ai": 2600,
+    "region": "North"
+  },
+  "AMZL|NZMN|Associate PT": {
+    "ai": 2600,
+    "region": "North"
+  },
+  "UFF|PDL1|Associate PT": {
+    "ai": 1000,
+    "region": "North"
+  },
+  "UFF|PDL5|Associate PT": {
+    "ai": 1000,
+    "region": "North"
+  },
+  "AMZL|DELH|CSDL": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|DLIH|CSDL": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NCT2|CSDL": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NZMN|CSDL": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "INFC|DED3|FC-Interpreter": {
+    "ai": 3250,
+    "region": "North"
+  },
+  "INFC|DED4|FC-Interpreter": {
+    "ai": 3250,
+    "region": "North"
+  },
+  "INFC|DED5|FC-Interpreter": {
+    "ai": 3250,
+    "region": "North"
+  },
+  "INFC|DEL2|FC-Interpreter": {
+    "ai": 3250,
+    "region": "North"
+  },
+  "INFC|DEL4|FC-Interpreter": {
+    "ai": 3250,
+    "region": "North"
+  },
+  "INFC|DED3|PA": {
+    "ai": 3250,
+    "region": "North"
+  },
+  "INFC|DED4|PA": {
+    "ai": 3250,
+    "region": "North"
+  },
+  "INFC|DED5|PA": {
+    "ai": 3250,
+    "region": "North"
+  },
+  "INFC|DEL2|PA": {
+    "ai": 3250,
+    "region": "North"
+  },
+  "INFC|DEL4|PA": {
+    "ai": 3250,
+    "region": "North"
+  },
+  "INFC|DEL5|PA": {
+    "ai": 3250,
+    "region": "North"
+  },
+  "INFC|HHS6|PA": {
+    "ai": 3250,
+    "region": "North"
+  },
+  "AMZL|DELH|PA": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|DLIH|PA": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NCT2|PA": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NZMN|PA": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "UFF|PDL5|PA": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "ATS|DELU|SC-Interpreter": {
+    "ai": 3250,
+    "region": "North"
+  },
+  "ATS|NCRU|SC-Interpreter": {
+    "ai": 3250,
+    "region": "North"
+  },
+  "AMZL|NCT2|Supervisor": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "UFF|PDL1|PA": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "ATS|NCRU|Associate": {
+    "ai": 3400,
+    "region": "North"
+  },
+  "ATS|NCRU|Associate PT": {
+    "ai": 3500,
+    "region": "North"
+  },
+  "ATS|NCRU|PA": {
+    "ai": 3250,
+    "region": "North"
+  },
+  "ATS|DELU|Associate": {
+    "ai": 3400,
+    "region": "North"
+  },
+  "ATS|DELU|Associate PT": {
+    "ai": 1700,
+    "region": "North"
+  },
+  "INFC|DEL5|FC-Interpreter": {
+    "ai": 3250,
+    "region": "North"
+  },
+  "ATS|DELU|PA": {
+    "ai": 3250,
+    "region": "North"
+  },
+  "ATS|MDEA|SC-Interpreter": {
+    "ai": 3250,
+    "region": "North"
+  },
+  "ATS|MDEA|Associate": {
+    "ai": 3400,
+    "region": "North"
+  },
+  "ATS|MDEA|Associate PT": {
+    "ai": 3500,
+    "region": "North"
+  },
+  "ATS|MDEA|PA": {
+    "ai": 3250,
+    "region": "North"
+  },
+  "AMZL|IXCE|AMZ ADE": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|IXCE|Associate": {
+    "ai": 3850,
+    "region": "North"
+  },
+  "AMZL|IXCE|Associate PT": {
+    "ai": 1925,
+    "region": "North"
+  },
+  "AMZL|IXCE|CSDL": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|IXCE|PA": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "UFF|SBLY|ADE": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "UFF|SBLZ|ADE": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "UFF|UBL5|ADE": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "UFF|UBL6|ADE": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "UFF|UBL9|ADE": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMXL|HBBB|AMXL Supervisor": {
+    "ai": 1850,
+    "region": "South"
+  },
+  "AMXL|HBRA|AMXL Supervisor": {
+    "ai": 1850,
+    "region": "South"
+  },
+  "AMZL|BLRA|AMZ ADE": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BLRB|AMZ ADE": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BLRG|AMZ ADE": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BLRL|AMZ ADE": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BLRM|AMZ ADE": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BLRP|AMZ ADE": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BLT1|AMZ ADE": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BLT2|AMZ ADE": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BLT3|AMZ ADE": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BLT4|AMZ ADE": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BLUA|AMZ ADE": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BRUB|AMZ ADE": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BRUC|AMZ ADE": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BRUD|AMZ ADE": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "INFC|BLR4|Associate": {
+    "ai": 3250,
+    "region": "South"
+  },
+  "INFC|BLR5|Associate": {
+    "ai": 3050,
+    "region": "South"
+  },
+  "INFC|BLR7|Associate": {
+    "ai": 3050,
+    "region": "South"
+  },
+  "INFC|BLR8|Associate": {
+    "ai": 3250,
+    "region": "South"
+  },
+  "ATS|SBCZ|Associate": {
+    "ai": 3100,
+    "region": "South"
+  },
+  "AMZL|BLRA|Associate": {
+    "ai": 4400,
+    "region": "South"
+  },
+  "AMZL|BLRB|Associate": {
+    "ai": 4400,
+    "region": "South"
+  },
+  "AMZL|BLRG|Associate": {
+    "ai": 4400,
+    "region": "South"
+  },
+  "AMZL|BLRL|Associate": {
+    "ai": 4400,
+    "region": "South"
+  },
+  "AMZL|BLRM|Associate": {
+    "ai": 4400,
+    "region": "South"
+  },
+  "AMZL|BLRP|Associate": {
+    "ai": 4400,
+    "region": "South"
+  },
+  "AMZL|BLT1|Associate": {
+    "ai": 4400,
+    "region": "South"
+  },
+  "AMZL|BLT2|Associate": {
+    "ai": 4400,
+    "region": "South"
+  },
+  "AMZL|BLT3|Associate": {
+    "ai": 4400,
+    "region": "South"
+  },
+  "AMZL|BLT4|Associate": {
+    "ai": 4400,
+    "region": "South"
+  },
+  "AMZL|BLUA|Associate": {
+    "ai": 4400,
+    "region": "South"
+  },
+  "AMZL|BRUB|Associate": {
+    "ai": 4400,
+    "region": "South"
+  },
+  "AMZL|BRUC|Associate": {
+    "ai": 4400,
+    "region": "South"
+  },
+  "AMZL|BRUD|Associate": {
+    "ai": 4400,
+    "region": "South"
+  },
+  "UFF|SBLY|Associate": {
+    "ai": 3350,
+    "region": "South"
+  },
+  "UFF|SBLZ|Associate": {
+    "ai": 3350,
+    "region": "South"
+  },
+  "UFF|UBL5|Associate": {
+    "ai": 3350,
+    "region": "South"
+  },
+  "UFF|UBL6|Associate": {
+    "ai": 3350,
+    "region": "South"
+  },
+  "UFF|UBL9|Associate": {
+    "ai": 3350,
+    "region": "South"
+  },
+  "AMXL|BLX1|Associate": {
+    "ai": 3050,
+    "region": "South"
+  },
+  "AMXL|HBBB|Associate": {
+    "ai": 1600,
+    "region": "South"
+  },
+  "AMXL|HBRA|Associate": {
+    "ai": 1600,
+    "region": "South"
+  },
+  "ATS|BLRS|Associate": {
+    "ai": 2900,
+    "region": "South"
+  },
+  "INFC|BLR7|Associate PT": {
+    "ai": 1525,
+    "region": "South"
+  },
+  "ATS|SBCZ|Associate PT": {
+    "ai": 3200,
+    "region": "South"
+  },
+  "AMZL|BLRA|Associate PT": {
+    "ai": 2200,
+    "region": "South"
+  },
+  "AMZL|BLRB|Associate PT": {
+    "ai": 2200,
+    "region": "South"
+  },
+  "AMZL|BLRG|Associate PT": {
+    "ai": 2200,
+    "region": "South"
+  },
+  "AMZL|BLRL|Associate PT": {
+    "ai": 2200,
+    "region": "South"
+  },
+  "AMZL|BLRM|Associate PT": {
+    "ai": 2200,
+    "region": "South"
+  },
+  "AMZL|BLRP|Associate PT": {
+    "ai": 2200,
+    "region": "South"
+  },
+  "AMZL|BLT1|Associate PT": {
+    "ai": 2200,
+    "region": "South"
+  },
+  "AMZL|BLT2|Associate PT": {
+    "ai": 2200,
+    "region": "South"
+  },
+  "AMZL|BLT3|Associate PT": {
+    "ai": 2200,
+    "region": "South"
+  },
+  "AMZL|BLT4|Associate PT": {
+    "ai": 2200,
+    "region": "South"
+  },
+  "AMZL|BLUA|Associate PT": {
+    "ai": 2200,
+    "region": "South"
+  },
+  "AMZL|BRUB|Associate PT": {
+    "ai": 2200,
+    "region": "South"
+  },
+  "AMZL|BRUC|Associate PT": {
+    "ai": 2200,
+    "region": "South"
+  },
+  "AMZL|BRUD|Associate PT": {
+    "ai": 2200,
+    "region": "South"
+  },
+  "UFF|SBLY|Associate PT": {
+    "ai": 1675,
+    "region": "South"
+  },
+  "UFF|SBLZ|Associate PT": {
+    "ai": 1675,
+    "region": "South"
+  },
+  "UFF|UBL5|Associate PT": {
+    "ai": 1675,
+    "region": "South"
+  },
+  "UFF|UBL6|Associate PT": {
+    "ai": 1675,
+    "region": "South"
+  },
+  "UFF|UBL9|Associate PT": {
+    "ai": 1675,
+    "region": "South"
+  },
+  "AMXL|BLX1|Associate PT": {
+    "ai": 1525,
+    "region": "South"
+  },
+  "AMXL|HBBB|Associate PT": {
+    "ai": 800,
+    "region": "South"
+  },
+  "AMXL|HBRA|Associate PT": {
+    "ai": 800,
+    "region": "South"
+  },
+  "ATS|BLRS|Associate PT": {
+    "ai": 3000,
+    "region": "South"
+  },
+  "AMZL|BLRA|CSDL": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BLRB|CSDL": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BLRG|CSDL": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BLRL|CSDL": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BLRM|CSDL": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BLRP|CSDL": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BLT1|CSDL": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BLT2|CSDL": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BLT3|CSDL": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BLT4|CSDL": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BLUA|CSDL": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BRUB|CSDL": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BRUC|CSDL": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BRUD|CSDL": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "INFC|BLR4|FC-Interpreter": {
+    "ai": 3250,
+    "region": "South"
+  },
+  "INFC|BLR5|FC-Interpreter": {
+    "ai": 3250,
+    "region": "South"
+  },
+  "INFC|BLR7|FC-Interpreter": {
+    "ai": 3250,
+    "region": "South"
+  },
+  "INFC|BLR8|FC-Interpreter": {
+    "ai": 3250,
+    "region": "South"
+  },
+  "INFC|BLR4|PA": {
+    "ai": 3250,
+    "region": "South"
+  },
+  "INFC|BLR5|PA": {
+    "ai": 3250,
+    "region": "South"
+  },
+  "INFC|BLR7|PA": {
+    "ai": 3250,
+    "region": "South"
+  },
+  "INFC|BLR8|PA": {
+    "ai": 3250,
+    "region": "South"
+  },
+  "ATS|SBCZ|PA": {
+    "ai": 4250,
+    "region": "South"
+  },
+  "AMZL|BLRA|PA": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BLRB|PA": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BLRG|PA": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BLRL|PA": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BLRM|PA": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BLRP|PA": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BLT1|PA": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BLT2|PA": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BLT3|PA": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BLT4|PA": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BLUA|PA": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BRUB|PA": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BRUC|PA": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMZL|BRUD|PA": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "UFF|SBLZ|PA": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "UFF|UBL9|PA": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "UFF|UBL5|PA": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "UFF|UBL6|PA": {
+    "ai": 2250,
+    "region": "South"
+  },
+  "AMXL|BLX1|PA": {
+    "ai": 3300,
+    "region": "South"
+  },
+  "ATS|BLRS|SC Supervisor": {
+    "ai": 0,
+    "region": "South"
+  },
+  "ATS|SBCZ|SC-Interpreter": {
+    "ai": 4250,
+    "region": "South"
+  },
+  "AMZL|IXGK|AMZ ADE": {
+    "ai": 800,
+    "region": "South"
+  },
+  "AMZL|IXGK|Associate": {
+    "ai": 2500,
+    "region": "South"
+  },
+  "AMZL|IXGK|Associate PT": {
+    "ai": 1250,
+    "region": "South"
+  },
+  "AMZL|IXGK|CSDL": {
+    "ai": 800,
+    "region": "South"
+  },
+  "AMZL|IXGK|PA": {
+    "ai": 800,
+    "region": "South"
+  },
+  "AMZL|MYQD|AMZ ADE": {
+    "ai": 800,
+    "region": "South"
+  },
+  "AMZL|MYQD|Associate": {
+    "ai": 2500,
+    "region": "South"
+  },
+  "AMZL|MYQD|Associate PT": {
+    "ai": 1250,
+    "region": "South"
+  },
+  "AMZL|MYQD|CSDL": {
+    "ai": 800,
+    "region": "South"
+  },
+  "AMZL|MYQD|PA": {
+    "ai": 800,
+    "region": "South"
+  },
+  "AMZL|COK41|AMZ ADE": {
+    "ai": 800,
+    "region": "South"
+  },
+  "AMZL|COK41|Associate": {
+    "ai": 800,
+    "region": "South"
+  },
+  "AMZL|COK41|Associate PT": {
+    "ai": 400,
+    "region": "South"
+  },
+  "INFC|BOM4|Associate": {
+    "ai": 2450,
+    "region": "West"
+  },
+  "INFC|BOM5|Associate": {
+    "ai": 2450,
+    "region": "West"
+  },
+  "INFC|BOM7|Associate": {
+    "ai": 2450,
+    "region": "West"
+  },
+  "INFC|ISK3|Associate": {
+    "ai": 2450,
+    "region": "West"
+  },
+  "ATS|MBOX|Associate": {
+    "ai": 2600,
+    "region": "West"
+  },
+  "GSF HUB|HMH4|Associate": {
+    "ai": 2450,
+    "region": "West"
+  },
+  "INFC|BOM5|Associate PT": {
+    "ai": 1225,
+    "region": "West"
+  },
+  "ATS|MBOX|Associate PT": {
+    "ai": 2700,
+    "region": "West"
+  },
+  "INFC|BOM4|FC-Interpreter": {
+    "ai": 2400,
+    "region": "West"
+  },
+  "INFC|BOM5|FC-Interpreter": {
+    "ai": 2400,
+    "region": "West"
+  },
+  "INFC|BOM7|FC-Interpreter": {
+    "ai": 2400,
+    "region": "West"
+  },
+  "INFC|ISK3|FC-Interpreter": {
+    "ai": 2400,
+    "region": "West"
+  },
+  "INFC|BOM4|PA": {
+    "ai": 2400,
+    "region": "West"
+  },
+  "INFC|BOM5|PA": {
+    "ai": 2400,
+    "region": "West"
+  },
+  "INFC|BOM7|PA": {
+    "ai": 2400,
+    "region": "West"
+  },
+  "INFC|ISK3|PA": {
+    "ai": 2400,
+    "region": "West"
+  },
+  "ATS|MBOX|PA": {
+    "ai": 2400,
+    "region": "West"
+  },
+  "GSF HUB|HMH4|PA": {
+    "ai": 2400,
+    "region": "West"
+  },
+  "ATS|MBOX|SC-Interpreter": {
+    "ai": 2400,
+    "region": "West"
+  },
+  "ATS|BOMD|SC Supervisor": {
+    "ai": 0,
+    "region": "West"
+  },
+  "UFF|FBOB|ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "UFF|PBO4|ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "UFF|PBO5|ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "UFF|PBO6|ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "UFF|PBO7|ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "UFF|UBO3|ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "UFF|UBO6|ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "UFF|UBO7|ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|BOMC|AMZ ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|BOME|AMZ ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|BOMJ|AMZ ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|BOMK|AMZ ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|BOML|AMZ ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|BOMN|AMZ ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|BOMP|AMZ ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|BOMS|AMZ ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|BOT2|AMZ ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|BOT3|AMZ ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|MMCA|AMZ ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|MMCE|AMZ ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|MUME|AMZ ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|MUMQ|AMZ ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|MUMR|AMZ ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|MUMV|AMZ ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|MUMZ|AMZ ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "ATS|BOMD|Associate": {
+    "ai": 2600,
+    "region": "West"
+  },
+  "AMZL|BOMC|Associate": {
+    "ai": 4000,
+    "region": "West"
+  },
+  "AMZL|BOME|Associate": {
+    "ai": 4000,
+    "region": "West"
+  },
+  "AMZL|BOMJ|Associate": {
+    "ai": 4000,
+    "region": "West"
+  },
+  "AMZL|BOMK|Associate": {
+    "ai": 4000,
+    "region": "West"
+  },
+  "AMZL|BOML|Associate": {
+    "ai": 4000,
+    "region": "West"
+  },
+  "AMZL|BOMN|Associate": {
+    "ai": 4000,
+    "region": "West"
+  },
+  "AMZL|BOMP|Associate": {
+    "ai": 4000,
+    "region": "West"
+  },
+  "AMZL|BOMS|Associate": {
+    "ai": 4000,
+    "region": "West"
+  },
+  "AMZL|BOT2|Associate": {
+    "ai": 4000,
+    "region": "West"
+  },
+  "AMZL|BOT3|Associate": {
+    "ai": 4000,
+    "region": "West"
+  },
+  "AMZL|MMCA|Associate": {
+    "ai": 4000,
+    "region": "West"
+  },
+  "AMZL|MMCE|Associate": {
+    "ai": 4000,
+    "region": "West"
+  },
+  "AMZL|MUME|Associate": {
+    "ai": 4000,
+    "region": "West"
+  },
+  "AMZL|MUMQ|Associate": {
+    "ai": 4000,
+    "region": "West"
+  },
+  "AMZL|MUMR|Associate": {
+    "ai": 4000,
+    "region": "West"
+  },
+  "AMZL|MUMV|Associate": {
+    "ai": 4000,
+    "region": "West"
+  },
+  "AMZL|MUMZ|Associate": {
+    "ai": 4000,
+    "region": "West"
+  },
+  "UFF|FBOB|Associate": {
+    "ai": 3250,
+    "region": "West"
+  },
+  "UFF|PBO4|Associate": {
+    "ai": 3250,
+    "region": "West"
+  },
+  "UFF|PBO5|Associate": {
+    "ai": 3250,
+    "region": "West"
+  },
+  "UFF|PBO6|Associate": {
+    "ai": 3250,
+    "region": "West"
+  },
+  "UFF|PBO7|Associate": {
+    "ai": 3250,
+    "region": "West"
+  },
+  "UFF|UBO3|Associate": {
+    "ai": 3250,
+    "region": "West"
+  },
+  "UFF|UBO6|Associate": {
+    "ai": 3250,
+    "region": "West"
+  },
+  "UFF|UBO7|Associate": {
+    "ai": 3250,
+    "region": "West"
+  },
+  "AMZL|BOME|Associate DA": {
+    "ai": 2000,
+    "region": "West"
+  },
+  "AMZL|BOML|Associate DA": {
+    "ai": 2000,
+    "region": "West"
+  },
+  "ATS|BOMD|Associate PT": {
+    "ai": 2700,
+    "region": "West"
+  },
+  "AMZL|BOMC|Associate PT": {
+    "ai": 2000,
+    "region": "West"
+  },
+  "AMZL|BOME|Associate PT": {
+    "ai": 2000,
+    "region": "West"
+  },
+  "AMZL|BOMJ|Associate PT": {
+    "ai": 2000,
+    "region": "West"
+  },
+  "AMZL|BOMK|Associate PT": {
+    "ai": 2000,
+    "region": "West"
+  },
+  "AMZL|BOML|Associate PT": {
+    "ai": 2000,
+    "region": "West"
+  },
+  "AMZL|BOMN|Associate PT": {
+    "ai": 2000,
+    "region": "West"
+  },
+  "AMZL|BOMP|Associate PT": {
+    "ai": 2000,
+    "region": "West"
+  },
+  "AMZL|BOMS|Associate PT": {
+    "ai": 2000,
+    "region": "West"
+  },
+  "AMZL|BOT2|Associate PT": {
+    "ai": 2000,
+    "region": "West"
+  },
+  "AMZL|BOT3|Associate PT": {
+    "ai": 2000,
+    "region": "West"
+  },
+  "AMZL|MMCA|Associate PT": {
+    "ai": 2000,
+    "region": "West"
+  },
+  "AMZL|MMCE|Associate PT": {
+    "ai": 2000,
+    "region": "West"
+  },
+  "AMZL|MUME|Associate PT": {
+    "ai": 2000,
+    "region": "West"
+  },
+  "AMZL|MUMQ|Associate PT": {
+    "ai": 2000,
+    "region": "West"
+  },
+  "AMZL|MUMR|Associate PT": {
+    "ai": 2000,
+    "region": "West"
+  },
+  "AMZL|MUMV|Associate PT": {
+    "ai": 2000,
+    "region": "West"
+  },
+  "AMZL|MUMZ|Associate PT": {
+    "ai": 2000,
+    "region": "West"
+  },
+  "UFF|FBOB|Associate PT": {
+    "ai": 1625,
+    "region": "West"
+  },
+  "UFF|PBO4|Associate PT": {
+    "ai": 1625,
+    "region": "West"
+  },
+  "UFF|PBO5|Associate PT": {
+    "ai": 1625,
+    "region": "West"
+  },
+  "UFF|PBO6|Associate PT": {
+    "ai": 1625,
+    "region": "West"
+  },
+  "UFF|PBO7|Associate PT": {
+    "ai": 1625,
+    "region": "West"
+  },
+  "UFF|UBO3|Associate PT": {
+    "ai": 1625,
+    "region": "West"
+  },
+  "UFF|UBO6|Associate PT": {
+    "ai": 1625,
+    "region": "West"
+  },
+  "UFF|UBO7|Associate PT": {
+    "ai": 1625,
+    "region": "West"
+  },
+  "AMZL|BOMC|CSDL": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|BOME|CSDL": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|BOMJ|CSDL": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|BOMK|CSDL": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|BOML|CSDL": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|BOMN|CSDL": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|BOMP|CSDL": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|BOMS|CSDL": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|BOT2|CSDL": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|BOT3|CSDL": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|MMCA|CSDL": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|MMCE|CSDL": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|MUME|CSDL": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|MUMQ|CSDL": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|MUMR|CSDL": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|MUMV|CSDL": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|MUMZ|CSDL": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "ATS|BOMD|PA": {
+    "ai": 2400,
+    "region": "West"
+  },
+  "AMZL|BOMC|PA": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|BOME|PA": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|BOMJ|PA": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|BOMK|PA": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|BOML|PA": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|BOMN|PA": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|BOMP|PA": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|BOMS|PA": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|BOT2|PA": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|BOT3|PA": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|MMCA|PA": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|MMCE|PA": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|MUME|PA": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|MUMQ|PA": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|MUMR|PA": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|MUMV|PA": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|MUMZ|PA": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "UFF|PBO5|PA": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "UFF|PBO6|PA": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "UFF|UBO6|PA": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "ATS|BOMD|SC-Interpreter": {
+    "ai": 2400,
+    "region": "West"
+  },
+  "UFF|FBOB|PA": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|NAGF|AMZ ADE": {
+    "ai": 1100,
+    "region": "West"
+  },
+  "AMZL|NAGL|AMZ ADE": {
+    "ai": 1100,
+    "region": "West"
+  },
+  "AMZL|NAGF|Associate": {
+    "ai": 3250,
+    "region": "West"
+  },
+  "AMZL|NAGL|Associate": {
+    "ai": 3250,
+    "region": "West"
+  },
+  "AMZL|NAGF|Associate PT": {
+    "ai": 1625,
+    "region": "West"
+  },
+  "AMZL|NAGL|Associate PT": {
+    "ai": 1625,
+    "region": "West"
+  },
+  "AMZL|NAGF|CSDL": {
+    "ai": 1100,
+    "region": "West"
+  },
+  "AMZL|NAGL|CSDL": {
+    "ai": 1100,
+    "region": "West"
+  },
+  "AMZL|NAGF|PA": {
+    "ai": 1100,
+    "region": "West"
+  },
+  "AMZL|NAGL|PA": {
+    "ai": 1100,
+    "region": "West"
+  },
+  "AMZL|ISKK|AMZ ADE": {
+    "ai": 1100,
+    "region": "West"
+  },
+  "AMZL|ISKK|Associate": {
+    "ai": 2250,
+    "region": "West"
+  },
+  "AMZL|ISKK|Associate PT": {
+    "ai": 1125,
+    "region": "West"
+  },
+  "AMZL|ISKK|CSDL": {
+    "ai": 1100,
+    "region": "West"
+  },
+  "AMZL|ISKK|PA": {
+    "ai": 1100,
+    "region": "West"
+  },
+  "UFF|UPN1|ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "UFF|UPN2|ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|MHPN|AMZ ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|MHPQ|AMZ ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|PNQA|AMZ ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|PNQJ|AMZ ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|PNT1|AMZ ADE": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "INFC|PNQ3|Associate": {
+    "ai": 2800,
+    "region": "West"
+  },
+  "ATS|MPNA|Associate": {
+    "ai": 2850,
+    "region": "West"
+  },
+  "AMZL|MHPN|Associate": {
+    "ai": 3700,
+    "region": "West"
+  },
+  "AMZL|MHPQ|Associate": {
+    "ai": 3700,
+    "region": "West"
+  },
+  "AMZL|PNQA|Associate": {
+    "ai": 3700,
+    "region": "West"
+  },
+  "AMZL|PNQJ|Associate": {
+    "ai": 3700,
+    "region": "West"
+  },
+  "AMZL|PNT1|Associate": {
+    "ai": 3700,
+    "region": "West"
+  },
+  "UFF|UPN1|Associate": {
+    "ai": 3350,
+    "region": "West"
+  },
+  "UFF|UPN2|Associate": {
+    "ai": 3350,
+    "region": "West"
+  },
+  "ATS|PNQZ|Associate": {
+    "ai": 2850,
+    "region": "South"
+  },
+  "INFC|PNQ3|Associate PT": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "ATS|MPNA|Associate PT": {
+    "ai": 2950,
+    "region": "West"
+  },
+  "AMZL|MHPN|Associate PT": {
+    "ai": 1850,
+    "region": "West"
+  },
+  "AMZL|MHPQ|Associate PT": {
+    "ai": 1850,
+    "region": "West"
+  },
+  "AMZL|PNQA|Associate PT": {
+    "ai": 1850,
+    "region": "West"
+  },
+  "AMZL|PNQJ|Associate PT": {
+    "ai": 1850,
+    "region": "West"
+  },
+  "AMZL|PNT1|Associate PT": {
+    "ai": 1850,
+    "region": "West"
+  },
+  "UFF|UPN1|Associate PT": {
+    "ai": 1675,
+    "region": "West"
+  },
+  "UFF|UPN2|Associate PT": {
+    "ai": 1675,
+    "region": "West"
+  },
+  "ATS|PNQZ|Associate PT": {
+    "ai": 2950,
+    "region": "South"
+  },
+  "AMZL|MHPN|CSDL": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|MHPQ|CSDL": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|PNQA|CSDL": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|PNQJ|CSDL": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|PNT1|CSDL": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "INFC|PNQ3|FC-Interpreter": {
+    "ai": 2750,
+    "region": "West"
+  },
+  "INFC|PNQ3|PA": {
+    "ai": 2750,
+    "region": "West"
+  },
+  "ATS|MPNA|PA": {
+    "ai": 2450,
+    "region": "West"
+  },
+  "AMZL|MHPN|PA": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|MHPQ|PA": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|PNQA|PA": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|PNQJ|PA": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "AMZL|PNT1|PA": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "UFF|UPN1|PA": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "UFF|UPN2|PA": {
+    "ai": 1400,
+    "region": "West"
+  },
+  "ATS|PNQZ|PA": {
+    "ai": 2450,
+    "region": "South"
+  },
+  "ATS|MPNA|SC-Interpreter": {
+    "ai": 2450,
+    "region": "West"
+  },
+  "AMZL|BHOG|AMZ ADE": {
+    "ai": 1100,
+    "region": "West"
+  },
+  "AMZL|BHOG|Associate": {
+    "ai": 2450,
+    "region": "West"
+  },
+  "AMZL|BHOG|Associate PT": {
+    "ai": 1225,
+    "region": "West"
+  },
+  "AMZL|BHOG|CSDL": {
+    "ai": 1100,
+    "region": "West"
+  },
+  "AMZL|BHOG|PA": {
+    "ai": 1100,
+    "region": "West"
+  },
+  "AMZL|IDRB|AMZ ADE": {
+    "ai": 1100,
+    "region": "West"
+  },
+  "AMZL|IDRB|Associate": {
+    "ai": 2850,
+    "region": "West"
+  },
+  "AMZL|IDRB|Associate PT": {
+    "ai": 1425,
+    "region": "West"
+  },
+  "AMZL|IDRB|CSDL": {
+    "ai": 1100,
+    "region": "West"
+  },
+  "AMZL|IDRB|PA": {
+    "ai": 1100,
+    "region": "West"
+  },
+  "AMZL|BBIF|AMZ ADE": {
+    "ai": 800,
+    "region": "West"
+  },
+  "ATS|BBID|Associate": {
+    "ai": 1200,
+    "region": "North"
+  },
+  "AMZL|BBIF|Associate": {
+    "ai": 3000,
+    "region": "West"
+  },
+  "ATS|BBID|Associate PT": {
+    "ai": 1300,
+    "region": "North"
+  },
+  "AMZL|BBIF|Associate PT": {
+    "ai": 1500,
+    "region": "West"
+  },
+  "AMZL|BBIF|CSDL": {
+    "ai": 800,
+    "region": "West"
+  },
+  "ATS|BBID|PA": {
+    "ai": 800,
+    "region": "North"
+  },
+  "AMZL|BBIF|PA": {
+    "ai": 800,
+    "region": "West"
+  },
+  "AMZL|ATQD|AMZ ADE": {
+    "ai": 800,
+    "region": "North"
+  },
+  "AMZL|ATQD|Associate": {
+    "ai": 1700,
+    "region": "North"
+  },
+  "AMZL|ATQD|Associate PT": {
+    "ai": 850,
+    "region": "North"
+  },
+  "AMZL|ATQD|CSDL": {
+    "ai": 800,
+    "region": "North"
+  },
+  "AMZL|ATQD|PA": {
+    "ai": 800,
+    "region": "North"
+  },
+  "AMZL|JULD|AMZ ADE": {
+    "ai": 800,
+    "region": "North"
+  },
+  "AMZL|JULD|Associate": {
+    "ai": 2000,
+    "region": "North"
+  },
+  "AMZL|JULD|Associate PT": {
+    "ai": 1000,
+    "region": "North"
+  },
+  "AMZL|JULD|CSDL": {
+    "ai": 800,
+    "region": "North"
+  },
+  "AMZL|JULD|PA": {
+    "ai": 800,
+    "region": "North"
+  },
+  "AMZL|LUHD|AMZ ADE": {
+    "ai": 800,
+    "region": "North"
+  },
+  "INFC|ATX1|Associate": {
+    "ai": 1500,
+    "region": "North"
+  },
+  "AMZL|LUHD|Associate": {
+    "ai": 3400,
+    "region": "North"
+  },
+  "AMZL|LUHD|Associate PT": {
+    "ai": 1700,
+    "region": "North"
+  },
+  "AMZL|LUHD|CSDL": {
+    "ai": 800,
+    "region": "North"
+  },
+  "INFC|ATX1|FC-Interpreter": {
+    "ai": 1400,
+    "region": "North"
+  },
+  "INFC|ATX1|PA": {
+    "ai": 1400,
+    "region": "North"
+  },
+  "AMZL|LUHD|PA": {
+    "ai": 800,
+    "region": "North"
+  },
+  "AMZL|IXCD|AMZ ADE": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|IXCD|Associate": {
+    "ai": 4150,
+    "region": "North"
+  },
+  "AMZL|IXCD|Associate PT": {
+    "ai": 2075,
+    "region": "North"
+  },
+  "AMZL|IXCD|CSDL": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|IXCD|PA": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|PNYF|AMZ ADE": {
+    "ai": 800,
+    "region": "South"
+  },
+  "AMZL|PNYF|Associate": {
+    "ai": 2300,
+    "region": "South"
+  },
+  "AMZL|PNYF|Associate PT": {
+    "ai": 1150,
+    "region": "South"
+  },
+  "AMZL|PNYF|PA": {
+    "ai": 800,
+    "region": "South"
+  },
+  "AMZL|JAIR|AMZ ADE": {
+    "ai": 1100,
+    "region": "West"
+  },
+  "INFC|JPX1|Associate": {
+    "ai": 1850,
+    "region": "North"
+  },
+  "ATS|MJAX|Associate": {
+    "ai": 1850,
+    "region": "North"
+  },
+  "AMZL|JAIR|Associate": {
+    "ai": 3050,
+    "region": "West"
+  },
+  "ATS|MJAX|Associate PT": {
+    "ai": 1950,
+    "region": "North"
+  },
+  "AMZL|JAIR|Associate PT": {
+    "ai": 1525,
+    "region": "West"
+  },
+  "AMZL|JAIR|CSDL": {
+    "ai": 1100,
+    "region": "West"
+  },
+  "INFC|JPX1|PA": {
+    "ai": 1500,
+    "region": "North"
+  },
+  "ATS|MJAX|PA": {
+    "ai": 2500,
+    "region": "North"
+  },
+  "AMZL|JAIR|PA": {
+    "ai": 1100,
+    "region": "West"
+  },
+  "AMZL|JDHD|AMZ ADE": {
+    "ai": 800,
+    "region": "West"
+  },
+  "AMZL|JDHD|Associate": {
+    "ai": 1900,
+    "region": "West"
+  },
+  "AMZL|JDHD|Associate PT": {
+    "ai": 950,
+    "region": "West"
+  },
+  "AMZL|JDHD|CSDL": {
+    "ai": 800,
+    "region": "West"
+  },
+  "AMZL|JDHD|PA": {
+    "ai": 800,
+    "region": "West"
+  },
+  "UFF|FHYE|ADE": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "UFF|U3PH|ADE": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMXL|HHDA|AMXL Supervisor": {
+    "ai": 1000,
+    "region": "South"
+  },
+  "AMXL|HHDC|AMXL Supervisor": {
+    "ai": 1000,
+    "region": "South"
+  },
+  "AMZL|HYBK|AMZ ADE": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|HYDD|AMZ ADE": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|HYDE|AMZ ADE": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|HYDH|AMZ ADE": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|HYDJ|AMZ ADE": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|HYDK|AMZ ADE": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|HYDP|AMZ ADE": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|HYT2|AMZ ADE": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|HYT3|AMZ ADE": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "INFC|HYD3|Associate": {
+    "ai": 2200,
+    "region": "South"
+  },
+  "INFC|HYD8|Associate": {
+    "ai": 2200,
+    "region": "South"
+  },
+  "ATS|MHYD|Associate": {
+    "ai": 2350,
+    "region": "South"
+  },
+  "AMZL|HYBK|Associate": {
+    "ai": 4000,
+    "region": "South"
+  },
+  "AMZL|HYDD|Associate": {
+    "ai": 4000,
+    "region": "South"
+  },
+  "AMZL|HYDE|Associate": {
+    "ai": 4000,
+    "region": "South"
+  },
+  "AMZL|HYDH|Associate": {
+    "ai": 4000,
+    "region": "South"
+  },
+  "AMZL|HYDJ|Associate": {
+    "ai": 4000,
+    "region": "South"
+  },
+  "AMZL|HYDK|Associate": {
+    "ai": 4000,
+    "region": "South"
+  },
+  "AMZL|HYDP|Associate": {
+    "ai": 4000,
+    "region": "South"
+  },
+  "AMZL|HYT2|Associate": {
+    "ai": 4000,
+    "region": "South"
+  },
+  "AMZL|HYT3|Associate": {
+    "ai": 4000,
+    "region": "South"
+  },
+  "UFF|FHYE|Associate": {
+    "ai": 2750,
+    "region": "South"
+  },
+  "UFF|U3PH|Associate": {
+    "ai": 2750,
+    "region": "South"
+  },
+  "AMXL|HHDA|Associate": {
+    "ai": 1000,
+    "region": "South"
+  },
+  "AMXL|HHDC|Associate": {
+    "ai": 1000,
+    "region": "South"
+  },
+  "ATS|HYD0|Associate": {
+    "ai": 2350,
+    "region": "South"
+  },
+  "ATS|MHYD|Associate PT": {
+    "ai": 2450,
+    "region": "South"
+  },
+  "AMZL|HYBK|Associate PT": {
+    "ai": 2000,
+    "region": "South"
+  },
+  "AMZL|HYDD|Associate PT": {
+    "ai": 2000,
+    "region": "South"
+  },
+  "AMZL|HYDE|Associate PT": {
+    "ai": 2000,
+    "region": "South"
+  },
+  "AMZL|HYDH|Associate PT": {
+    "ai": 2000,
+    "region": "South"
+  },
+  "AMZL|HYDJ|Associate PT": {
+    "ai": 2000,
+    "region": "South"
+  },
+  "AMZL|HYDK|Associate PT": {
+    "ai": 2000,
+    "region": "South"
+  },
+  "AMZL|HYDP|Associate PT": {
+    "ai": 2000,
+    "region": "South"
+  },
+  "AMZL|HYT2|Associate PT": {
+    "ai": 2000,
+    "region": "South"
+  },
+  "AMZL|HYT3|Associate PT": {
+    "ai": 2000,
+    "region": "South"
+  },
+  "UFF|FHYE|Associate PT": {
+    "ai": 1375,
+    "region": "South"
+  },
+  "UFF|U3PH|Associate PT": {
+    "ai": 1375,
+    "region": "South"
+  },
+  "AMXL|HHDA|Associate PT": {
+    "ai": 500,
+    "region": "South"
+  },
+  "AMXL|HHDC|Associate PT": {
+    "ai": 500,
+    "region": "South"
+  },
+  "ATS|HYD0|Associate PT": {
+    "ai": 2450,
+    "region": "South"
+  },
+  "AMZL|HYBK|CSDL": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|HYDD|CSDL": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|HYDE|CSDL": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|HYDH|CSDL": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|HYDJ|CSDL": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|HYDK|CSDL": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|HYDP|CSDL": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|HYT2|CSDL": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|HYT3|CSDL": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "INFC|HYD3|FC-Interpreter": {
+    "ai": 1850,
+    "region": "South"
+  },
+  "INFC|HYD8|FC-Interpreter": {
+    "ai": 1850,
+    "region": "South"
+  },
+  "INFC|HYD3|PA": {
+    "ai": 1850,
+    "region": "South"
+  },
+  "INFC|HYD8|PA": {
+    "ai": 1850,
+    "region": "South"
+  },
+  "ATS|MHYD|PA": {
+    "ai": 2100,
+    "region": "South"
+  },
+  "AMZL|HYBK|PA": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|HYDD|PA": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|HYDE|PA": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|HYDH|PA": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|HYDJ|PA": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|HYDK|PA": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|HYDP|PA": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|HYT2|PA": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|HYT3|PA": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "UFF|FHYE|PA": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "UFF|U3PH|PA": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "ATS|HYD0|SC Supervisor": {
+    "ai": 0,
+    "region": "South"
+  },
+  "ATS|MHYD|SC-Interpreter": {
+    "ai": 2100,
+    "region": "South"
+  },
+  "ATS|VOMM|SC Supervisor": {
+    "ai": 0,
+    "region": "South"
+  },
+  "UFF|HMA1|ADE": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "UFF|UMA2|ADE": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "UFF|UMA7|ADE": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMXL|HMAA|AMXL Supervisor": {
+    "ai": 1000,
+    "region": "South"
+  },
+  "AMZL|MAAE|AMZ ADE": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|MAAG|AMZ ADE": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|MAAI|AMZ ADE": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|MAAJ|AMZ ADE": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|MAAK|AMZ ADE": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|MAAL|AMZ ADE": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|MAT1|AMZ ADE": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "INFC|MAA4|Associate": {
+    "ai": 2200,
+    "region": "South"
+  },
+  "ATS|MMAA|Associate": {
+    "ai": 2500,
+    "region": "South"
+  },
+  "AMZL|MAAE|Associate": {
+    "ai": 3600,
+    "region": "South"
+  },
+  "AMZL|MAAG|Associate": {
+    "ai": 3600,
+    "region": "South"
+  },
+  "AMZL|MAAI|Associate": {
+    "ai": 3600,
+    "region": "South"
+  },
+  "AMZL|MAAJ|Associate": {
+    "ai": 3600,
+    "region": "South"
+  },
+  "AMZL|MAAK|Associate": {
+    "ai": 3600,
+    "region": "South"
+  },
+  "AMZL|MAAL|Associate": {
+    "ai": 3600,
+    "region": "South"
+  },
+  "AMZL|MAT1|Associate": {
+    "ai": 3600,
+    "region": "South"
+  },
+  "UFF|HMA1|Associate": {
+    "ai": 2800,
+    "region": "South"
+  },
+  "UFF|UMA2|Associate": {
+    "ai": 2800,
+    "region": "South"
+  },
+  "UFF|UMA7|Associate": {
+    "ai": 2800,
+    "region": "South"
+  },
+  "AMXL|HMAA|Associate": {
+    "ai": 1000,
+    "region": "South"
+  },
+  "ATS|MMAA|Associate PT": {
+    "ai": 2600,
+    "region": "South"
+  },
+  "AMZL|MAAE|Associate PT": {
+    "ai": 1800,
+    "region": "South"
+  },
+  "AMZL|MAAG|Associate PT": {
+    "ai": 1800,
+    "region": "South"
+  },
+  "AMZL|MAAI|Associate PT": {
+    "ai": 1800,
+    "region": "South"
+  },
+  "AMZL|MAAJ|Associate PT": {
+    "ai": 1800,
+    "region": "South"
+  },
+  "AMZL|MAAK|Associate PT": {
+    "ai": 1800,
+    "region": "South"
+  },
+  "AMZL|MAAL|Associate PT": {
+    "ai": 1800,
+    "region": "South"
+  },
+  "AMZL|MAT1|Associate PT": {
+    "ai": 1800,
+    "region": "South"
+  },
+  "UFF|HMA1|Associate PT": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "UFF|UMA2|Associate PT": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "UFF|UMA7|Associate PT": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMXL|HMAA|Associate PT": {
+    "ai": 500,
+    "region": "South"
+  },
+  "AMZL|MAAE|CSDL": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|MAAG|CSDL": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|MAAI|CSDL": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|MAAJ|CSDL": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|MAAK|CSDL": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|MAAL|CSDL": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|MAT1|CSDL": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "INFC|MAA4|FC-Interpreter": {
+    "ai": 1850,
+    "region": "South"
+  },
+  "INFC|MAA4|PA": {
+    "ai": 1850,
+    "region": "South"
+  },
+  "ATS|MMAA|PA": {
+    "ai": 2100,
+    "region": "South"
+  },
+  "AMZL|MAAE|PA": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|MAAG|PA": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|MAAI|PA": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|MAAJ|PA": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|MAAK|PA": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|MAAL|PA": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|MAT1|PA": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "UFF|HMA1|PA": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "UFF|UMA2|PA": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "UFF|UMA7|PA": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "UFF|PMA1|ADE": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "UFF|U3PC|ADE": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "UFF|PMA1|Associate": {
+    "ai": 2800,
+    "region": "South"
+  },
+  "UFF|U3PC|Associate": {
+    "ai": 2800,
+    "region": "South"
+  },
+  "UFF|PMA1|Associate PT": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "UFF|U3PC|Associate PT": {
+    "ai": 1400,
+    "region": "South"
+  },
+  "AMZL|PTJD|AMZ ADE": {
+    "ai": 1100,
+    "region": "South"
+  },
+  "INFC|CJB1|Associate": {
+    "ai": 1950,
+    "region": "South"
+  },
+  "AMZL|PTJD|Associate": {
+    "ai": 3350,
+    "region": "South"
+  },
+  "AMZL|PTJD|Associate PT": {
+    "ai": 1675,
+    "region": "South"
+  },
+  "AMZL|PTJD|CSDL": {
+    "ai": 1100,
+    "region": "South"
+  },
+  "INFC|CJB1|FC-Interpreter": {
+    "ai": 1850,
+    "region": "South"
+  },
+  "INFC|CJB1|PA": {
+    "ai": 1850,
+    "region": "South"
+  },
+  "AMZL|PTJD|PA": {
+    "ai": 1100,
+    "region": "South"
+  },
+  "ATS|SXVD|Associate": {
+    "ai": 1200,
+    "region": "South"
+  },
+  "ATS|SXVD|Associate PT": {
+    "ai": 1300,
+    "region": "South"
+  },
+  "ATS|SXVD|PA": {
+    "ai": 800,
+    "region": "South"
+  },
+  "AMZL|AGRD|AMZ ADE": {
+    "ai": 800,
+    "region": "North"
+  },
+  "AMZL|AGRD|Associate": {
+    "ai": 2300,
+    "region": "North"
+  },
+  "AMZL|AGRD|Associate PT": {
+    "ai": 1150,
+    "region": "North"
+  },
+  "AMZL|AGRD|CSDL": {
+    "ai": 800,
+    "region": "North"
+  },
+  "AMZL|AGRD|PA": {
+    "ai": 800,
+    "region": "North"
+  },
+  "AMZL|IXDD|AMZ ADE": {
+    "ai": 800,
+    "region": "North"
+  },
+  "AMZL|IXDD|Associate": {
+    "ai": 2100,
+    "region": "North"
+  },
+  "AMZL|IXDD|Associate PT": {
+    "ai": 1050,
+    "region": "North"
+  },
+  "AMZL|IXDD|CSDL": {
+    "ai": 800,
+    "region": "North"
+  },
+  "AMZL|IXDD|PA": {
+    "ai": 800,
+    "region": "North"
+  },
+  "AMXL|HDLB|AMXL Supervisor": {
+    "ai": 1000,
+    "region": "North"
+  },
+  "AMZL|NCRJ|AMZ ADE": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NCT8|AMZ ADE": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NCRJ|Associate": {
+    "ai": 5200,
+    "region": "North"
+  },
+  "AMZL|NCT8|Associate": {
+    "ai": 5200,
+    "region": "North"
+  },
+  "AMXL|HDLB|Associate": {
+    "ai": 1000,
+    "region": "North"
+  },
+  "AMZL|NCRJ|Associate PT": {
+    "ai": 2600,
+    "region": "North"
+  },
+  "AMZL|NCT8|Associate PT": {
+    "ai": 2600,
+    "region": "North"
+  },
+  "AMXL|HDLB|Associate PT": {
+    "ai": 500,
+    "region": "North"
+  },
+  "AMZL|NCRJ|CSDL": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NCT8|CSDL": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NCRJ|PA": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NCT8|PA": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|GKPL|AMZ ADE": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|GKPL|Associate": {
+    "ai": 2550,
+    "region": "North"
+  },
+  "AMZL|GKPL|Associate PT": {
+    "ai": 1275,
+    "region": "North"
+  },
+  "AMZL|GKPL|CSDL": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|GKPL|PA": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|KNUD|AMZ ADE": {
+    "ai": 800,
+    "region": "North"
+  },
+  "AMZL|KNUO|AMZ ADE": {
+    "ai": 800,
+    "region": "North"
+  },
+  "AMZL|KNUD|Associate": {
+    "ai": 2700,
+    "region": "North"
+  },
+  "AMZL|KNUO|Associate": {
+    "ai": 2700,
+    "region": "North"
+  },
+  "AMZL|KNUD|Associate PT": {
+    "ai": 1350,
+    "region": "North"
+  },
+  "AMZL|KNUO|Associate PT": {
+    "ai": 1350,
+    "region": "North"
+  },
+  "AMZL|KNUD|CSDL": {
+    "ai": 800,
+    "region": "North"
+  },
+  "AMZL|KNUO|CSDL": {
+    "ai": 800,
+    "region": "North"
+  },
+  "AMZL|KNUD|PA": {
+    "ai": 800,
+    "region": "North"
+  },
+  "AMZL|KNUO|PA": {
+    "ai": 800,
+    "region": "North"
+  },
+  "ATS|LKOO|SC Supervisor": {
+    "ai": 0,
+    "region": "North"
+  },
+  "AMZL|LKOA|AMZ ADE": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|LKOD|AMZ ADE": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|LKOI|AMZ ADE": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "INFC|LKO1|Associate": {
+    "ai": 1950,
+    "region": "North"
+  },
+  "ATS|LKOO|Associate": {
+    "ai": 1950,
+    "region": "North"
+  },
+  "AMZL|LKOA|Associate": {
+    "ai": 3650,
+    "region": "North"
+  },
+  "AMZL|LKOD|Associate": {
+    "ai": 3650,
+    "region": "North"
+  },
+  "AMZL|LKOI|Associate": {
+    "ai": 3650,
+    "region": "North"
+  },
+  "ATS|LKOO|Associate PT": {
+    "ai": 2050,
+    "region": "North"
+  },
+  "AMZL|LKOA|Associate PT": {
+    "ai": 1825,
+    "region": "North"
+  },
+  "AMZL|LKOD|Associate PT": {
+    "ai": 1825,
+    "region": "North"
+  },
+  "AMZL|LKOI|Associate PT": {
+    "ai": 1825,
+    "region": "North"
+  },
+  "AMZL|LKOA|CSDL": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|LKOD|CSDL": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|LKOI|CSDL": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "INFC|LKO1|FC-Interpreter": {
+    "ai": 1600,
+    "region": "North"
+  },
+  "INFC|LKO1|PA": {
+    "ai": 1600,
+    "region": "North"
+  },
+  "ATS|LKOO|PA": {
+    "ai": 1600,
+    "region": "North"
+  },
+  "AMZL|LKOA|PA": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|LKOD|PA": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|LKOI|PA": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|MREE|AMZ ADE": {
+    "ai": 800,
+    "region": "North"
+  },
+  "AMZL|MREE|Associate": {
+    "ai": 2500,
+    "region": "North"
+  },
+  "AMZL|MREE|Associate PT": {
+    "ai": 1250,
+    "region": "North"
+  },
+  "AMZL|MREE|CSDL": {
+    "ai": 800,
+    "region": "North"
+  },
+  "AMZL|MREE|PA": {
+    "ai": 800,
+    "region": "North"
+  },
+  "AMZL|NCT3|AMZ ADE": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NZMF|AMZ ADE": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NZMM|AMZ ADE": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NCT3|Associate": {
+    "ai": 5200,
+    "region": "North"
+  },
+  "AMZL|NZMF|Associate": {
+    "ai": 5200,
+    "region": "North"
+  },
+  "AMZL|NZMM|Associate": {
+    "ai": 5200,
+    "region": "North"
+  },
+  "UFF|UDL6|Associate": {
+    "ai": 2000,
+    "region": "North"
+  },
+  "AMZL|NCT3|Associate PT": {
+    "ai": 2600,
+    "region": "North"
+  },
+  "AMZL|NZMF|Associate PT": {
+    "ai": 2600,
+    "region": "North"
+  },
+  "AMZL|NZMM|Associate PT": {
+    "ai": 2600,
+    "region": "North"
+  },
+  "UFF|UDL6|Associate PT": {
+    "ai": 1000,
+    "region": "North"
+  },
+  "AMZL|NCT3|CSDL": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NZMF|CSDL": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NZMM|CSDL": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NCT3|PA": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NZMF|PA": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|NZMM|PA": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "UFF|UDL6|PA": {
+    "ai": 2800,
+    "region": "North"
+  },
+  "AMZL|VNSD|AMZ ADE": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|VNSD|Associate": {
+    "ai": 2750,
+    "region": "North"
+  },
+  "AMZL|VNSD|Associate PT": {
+    "ai": 1375,
+    "region": "North"
+  },
+  "AMZL|VNSD|CSDL": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|VNSD|PA": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|HRWA|AMZ ADE": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|HRWA|Associate": {
+    "ai": 2850,
+    "region": "North"
+  },
+  "AMZL|HRWA|Associate PT": {
+    "ai": 1425,
+    "region": "North"
+  },
+  "AMZL|HRWA|CSDL": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|HRWA|PA": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "UFF|UCC1|ADE": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "UFF|UCC2|ADE": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|CCT1|AMZ ADE": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|HWHA|AMZ ADE": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|KOLE|AMZ ADE": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|CCT1|Associate": {
+    "ai": 3150,
+    "region": "North"
+  },
+  "AMZL|HWHA|Associate": {
+    "ai": 3150,
+    "region": "North"
+  },
+  "AMZL|KOLE|Associate": {
+    "ai": 3150,
+    "region": "North"
+  },
+  "UFF|UCC1|Associate": {
+    "ai": 1750,
+    "region": "North"
+  },
+  "UFF|UCC2|Associate": {
+    "ai": 1750,
+    "region": "North"
+  },
+  "AMZL|CCT1|Associate PT": {
+    "ai": 1575,
+    "region": "North"
+  },
+  "AMZL|HWHA|Associate PT": {
+    "ai": 1575,
+    "region": "North"
+  },
+  "AMZL|KOLE|Associate PT": {
+    "ai": 1575,
+    "region": "North"
+  },
+  "UFF|UCC1|Associate PT": {
+    "ai": 875,
+    "region": "North"
+  },
+  "UFF|UCC2|Associate PT": {
+    "ai": 875,
+    "region": "North"
+  },
+  "AMZL|CCT1|CSDL": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|HWHA|CSDL": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|KOLE|CSDL": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|CCT1|PA": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|HWHA|PA": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "AMZL|KOLE|PA": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "UFF|UCC1|PA": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "UFF|UCC2|PA": {
+    "ai": 1100,
+    "region": "North"
+  },
+  "ATS|MAMA|SC-Interpreter": {
+    "ai": 2100,
+    "region": "West"
+  },
+  "ATS|MSTA|SC-Interpreter": {
+    "ai": 1700,
+    "region": "West"
+  }
+}
