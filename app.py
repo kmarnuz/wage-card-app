@@ -1615,8 +1615,8 @@ def export_current_template():
                card.get('minimum_wage',0), card.get('weekly_hours',45), card.get('daily_hours',9))
         tenure = card.get('tenure_years', 0)
         groups[key][tenure] = card.get('gross', 0)
-        groups[key][f'old_ot_{tenure}'] = card.get('old_ot', 0)
-        groups[key][f'old_hol_{tenure}'] = card.get('old_hol', 0)
+        groups[key][f'old_ot_{tenure}'] = 0  # Old OT/Hol now from depository, not template
+        groups[key][f'old_hol_{tenure}'] = 0
         # Store other fields from any card in the group
         if 'card_ref' not in groups[key]:
             groups[key]['card_ref'] = card
@@ -1625,13 +1625,11 @@ def export_current_template():
     ws = wb.active
     ws.title = "Wage Card Depository"
 
-    # Headers matching Template_V2 format
+    # Headers matching Template_V2 format (Old OT/Hol removed — now in dedicated depository)
     headers = ["Mile", "Site Code", "State", "City", "State Weekly Working Hours",
                "State Daily Working Hours", "Node", "Level", "Short BT",
                "Minimum Wage Category", "Minimum Wage Zone", "Minimum Wage",
-               "Minimum Wage (Effective Date)", "0 Year", "1 Year", "2 Year", "3 Year", "4 Year",
-               "Old OT 0Yr", "Old OT 1Yr", "Old OT 2Yr", "Old OT 3Yr", "Old OT 4Yr",
-               "Old Hol 0Yr", "Old Hol 1Yr", "Old Hol 2Yr", "Old Hol 3Yr", "Old Hol 4Yr"]
+               "Minimum Wage (Effective Date)", "0 Year", "1 Year", "2 Year", "3 Year", "4 Year"]
 
     hdr_font = Font(bold=True, size=10)
     border = Border(left=Side(style='thin'), right=Side(style='thin'),
@@ -1667,27 +1665,13 @@ def export_current_template():
         ws.cell(row=row_idx, column=17, value=tenure_data.get(3, 0))
         ws.cell(row=row_idx, column=18, value=tenure_data.get(4, 0))
 
-        # Old OT 0-4 Year (columns 19-23)
-        ws.cell(row=row_idx, column=19, value=round(tenure_data.get('old_ot_0', 0) or 0))
-        ws.cell(row=row_idx, column=20, value=round(tenure_data.get('old_ot_1', 0) or 0))
-        ws.cell(row=row_idx, column=21, value=round(tenure_data.get('old_ot_2', 0) or 0))
-        ws.cell(row=row_idx, column=22, value=round(tenure_data.get('old_ot_3', 0) or 0))
-        ws.cell(row=row_idx, column=23, value=round(tenure_data.get('old_ot_4', 0) or 0))
-
-        # Old Hol 0-4 Year (columns 24-28)
-        ws.cell(row=row_idx, column=24, value=round(tenure_data.get('old_hol_0', 0) or 0))
-        ws.cell(row=row_idx, column=25, value=round(tenure_data.get('old_hol_1', 0) or 0))
-        ws.cell(row=row_idx, column=26, value=round(tenure_data.get('old_hol_2', 0) or 0))
-        ws.cell(row=row_idx, column=27, value=round(tenure_data.get('old_hol_3', 0) or 0))
-        ws.cell(row=row_idx, column=28, value=round(tenure_data.get('old_hol_4', 0) or 0))
-
-        for col in range(1, 29):
+        for col in range(1, 19):
             ws.cell(row=row_idx, column=col).border = border
 
         row_idx += 1
 
     # Column widths
-    for col in range(1, 29):
+    for col in range(1, 19):
         ws.column_dimensions[openpyxl.utils.get_column_letter(col)].width = 15
 
     output = io.BytesIO()
