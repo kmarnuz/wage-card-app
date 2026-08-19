@@ -462,5 +462,21 @@
     "lwf_p10": 0,
     "lwf_p5": 0,
     "lwf_p8": 0
+  },
+  "KARNATAKA|DHARWAD": {
+    "pt_p10": 13,
+    "pt_p5": 7,
+    "pt_p8": 13,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "KA|DHARWAD": {
+    "pt_p10": 13,
+    "pt_p5": 7,
+    "pt_p8": 13,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
   }
 }
