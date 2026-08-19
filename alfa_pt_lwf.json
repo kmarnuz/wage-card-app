@@ -478,5 +478,101 @@
     "lwf_p10": 0,
     "lwf_p5": 0,
     "lwf_p8": 0
+  },
+  "HARYANA|GURGAON": {
+    "pt_p10": 0,
+    "pt_p5": 0,
+    "pt_p8": 0,
+    "lwf_p10": 2,
+    "lwf_p5": 1,
+    "lwf_p8": 2
+  },
+  "HY|GURGAON": {
+    "pt_p10": 0,
+    "pt_p5": 0,
+    "pt_p8": 0,
+    "lwf_p10": 2,
+    "lwf_p5": 1,
+    "lwf_p8": 2
+  },
+  "HARYANA|FARIDABAD": {
+    "pt_p10": 0,
+    "pt_p5": 0,
+    "pt_p8": 0,
+    "lwf_p10": 2,
+    "lwf_p5": 1,
+    "lwf_p8": 2
+  },
+  "HY|FARIDABAD": {
+    "pt_p10": 0,
+    "pt_p5": 0,
+    "pt_p8": 0,
+    "lwf_p10": 2,
+    "lwf_p5": 1,
+    "lwf_p8": 2
+  },
+  "HARYANA|MANESAR": {
+    "pt_p10": 0,
+    "pt_p5": 0,
+    "pt_p8": 0,
+    "lwf_p10": 2,
+    "lwf_p5": 1,
+    "lwf_p8": 2
+  },
+  "HY|MANESAR": {
+    "pt_p10": 0,
+    "pt_p5": 0,
+    "pt_p8": 0,
+    "lwf_p10": 2,
+    "lwf_p5": 1,
+    "lwf_p8": 2
+  },
+  "HARYANA|PANCHKULA": {
+    "pt_p10": 0,
+    "pt_p5": 0,
+    "pt_p8": 0,
+    "lwf_p10": 2,
+    "lwf_p5": 1,
+    "lwf_p8": 2
+  },
+  "HY|PANCHKULA": {
+    "pt_p10": 0,
+    "pt_p5": 0,
+    "pt_p8": 0,
+    "lwf_p10": 2,
+    "lwf_p5": 1,
+    "lwf_p8": 2
+  },
+  "HARYANA|JAMALPUR": {
+    "pt_p10": 0,
+    "pt_p5": 0,
+    "pt_p8": 0,
+    "lwf_p10": 2,
+    "lwf_p5": 1,
+    "lwf_p8": 2
+  },
+  "HY|JAMALPUR": {
+    "pt_p10": 0,
+    "pt_p5": 0,
+    "pt_p8": 0,
+    "lwf_p10": 2,
+    "lwf_p5": 1,
+    "lwf_p8": 2
+  },
+  "HARYANA|TAORU/NUH": {
+    "pt_p10": 0,
+    "pt_p5": 0,
+    "pt_p8": 0,
+    "lwf_p10": 2,
+    "lwf_p5": 1,
+    "lwf_p8": 2
+  },
+  "HY|TAORU/NUH": {
+    "pt_p10": 0,
+    "pt_p5": 0,
+    "pt_p8": 0,
+    "lwf_p10": 2,
+    "lwf_p5": 1,
+    "lwf_p8": 2
   }
 }
