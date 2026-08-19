@@ -414,5 +414,53 @@
     "lwf_p10": 0,
     "lwf_p5": 0,
     "lwf_p8": 0
+  },
+  "TAMIL NADU|CHENNAI UFF": {
+    "pt_p10": 24,
+    "pt_p5": 12,
+    "pt_p8": 24,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "TN|CHENNAI UFF": {
+    "pt_p10": 24,
+    "pt_p5": 12,
+    "pt_p8": 24,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "TAMIL NADU|SALEM": {
+    "pt_p10": 24,
+    "pt_p5": 12,
+    "pt_p8": 24,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "TN|SALEM": {
+    "pt_p10": 24,
+    "pt_p5": 12,
+    "pt_p8": 24,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "MAHARASHTRA|BHIWANDI": {
+    "pt_p10": 32,
+    "pt_p5": 16,
+    "pt_p8": 32,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
+  },
+  "MH|BHIWANDI": {
+    "pt_p10": 32,
+    "pt_p5": 16,
+    "pt_p8": 32,
+    "lwf_p10": 0,
+    "lwf_p5": 0,
+    "lwf_p8": 0
   }
 }
