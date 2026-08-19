@@ -26,6 +26,7 @@
     {"entity": "UFF", "site_code": "UBL6", "attendance_codes": ["P10"]},
     {"entity": "UFF", "site_code": "UBL9", "attendance_codes": ["P10"]},
     {"entity": "UFF", "site_code": "UBL5", "attendance_codes": ["P10"]},
-    {"entity": "UFF", "site_code": "SBLY", "attendance_codes": ["P10"]}
+    {"entity": "UFF", "site_code": "SBLY", "attendance_codes": ["P10"]},
+    {"entity": "AMZL", "site_code": "IXCE", "attendance_codes": ["P10"]}
   ]
 }
