@@ -2376,10 +2376,20 @@ async def upload_old_ot_hol_depository(file: UploadFile = File(...), password: s
             continue
         entity = str(row[0]).strip()
         site = str(row[1]).strip()
-        bt = str(row[3]).strip()
+        # Detect format: if column count >= 14 and col[2] looks like a state code (2-3 chars),
+        # then format is Entity|Site|State|ShortBT|OT0-4|Hol0-4 (14 cols)
+        # Otherwise format is Entity|Site|ShortBT|OT0-4|Hol0-4 (13 cols from download)
+        if len(row) >= 14 and row[2] and len(str(row[2]).strip()) <= 3 and str(row[3]).strip():
+            # Original format with State column
+            bt = str(row[3]).strip()
+            ot_start = 4
+        else:
+            # Download format without State column
+            bt = str(row[2]).strip()
+            ot_start = 3
         try:
-            ot = [int(row[i] or 0) for i in range(4, 9)]
-            hol = [int(row[i] or 0) for i in range(9, 14)]
+            ot = [int(row[ot_start + i] or 0) for i in range(5)]
+            hol = [int(row[ot_start + 5 + i] or 0) for i in range(5)]
         except (ValueError, TypeError, IndexError):
             continue
         dep[f"{entity}|{site}|{bt}"] = {"old_ot": ot, "old_hol": hol}
