@@ -1270,6 +1270,284 @@ def download_logic_depository():
 # FRONTEND — Served from the same app
 # ============================================================
 
+# --- Gross Revision (Add/Update Site Rates) ---
+@app.get("/api/gross-revision-template/download")
+def download_gross_revision_template():
+    """Download a Gross Revision template for adding new sites or updating existing Gross."""
+    import openpyxl
+    from openpyxl.styles import Font, PatternFill, Border, Side
+
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "Gross Revision"
+
+    headers = ["Entity", "Site Code", "State", "City", "Short BT",
+               "MW Category", "MW Zone", "Weekly Hours", "Daily Hours",
+               "Minimum Wage", "0 Year", "1 Year", "2 Year", "3 Year", "4 Year"]
+    notes = ["Required", "Required", "New site only", "New site only", "Required",
+             "New site only", "Optional", "New site only (def 45)", "New site only (def 9)",
+             "New site only", "Required", "Required", "Required", "Required", "Required"]
+
+    hdr_fill = PatternFill(start_color="232F3E", end_color="232F3E", fill_type="solid")
+    hdr_font = Font(bold=True, size=10, color="FFFFFF")
+    note_font = Font(italic=True, size=9, color="666666")
+    thin = Border(left=Side('thin'), right=Side('thin'), top=Side('thin'), bottom=Side('thin'))
+
+    for col, h in enumerate(headers, 1):
+        c = ws.cell(row=1, column=col, value=h)
+        c.font = hdr_font
+        c.fill = hdr_fill
+        c.border = thin
+    for col, n in enumerate(notes, 1):
+        c = ws.cell(row=2, column=col, value=n)
+        c.font = note_font
+        c.border = thin
+
+    for col in range(1, 16):
+        ws.column_dimensions[openpyxl.utils.get_column_letter(col)].width = 15
+
+    # Instructions sheet
+    ws2 = wb.create_sheet("Instructions")
+    instructions = [
+        "GROSS REVISION TEMPLATE — Instructions",
+        "",
+        "Use this template to:",
+        "  1. Update Gross for existing Site/BT (only Entity, Site Code, Short BT, and Gross columns needed)",
+        "  2. Add a new Site/BT (fill all columns including State, City, MW, Hours)",
+        "",
+        "How it works:",
+        "  - If Entity + Site Code + Short BT already exists → Gross is updated, components re-split",
+        "  - If it doesn't exist → new wage cards are created for all 5 tenure bands",
+        "  - After upload: PT cards regenerated, parity enforced, depositories (AI + Old OT/Hol) applied",
+        "",
+        "Notes:",
+        "  - For existing sites: State, City, Hours, MW columns are ignored (already stored)",
+        "  - For new sites: State, City, MW are required; Hours default to 45/9 if blank",
+        "  - MW Category defaults to 'Semi Skilled' for Associate/Associate PT, 'Skilled' for others",
+    ]
+    for i, line in enumerate(instructions, 1):
+        ws2.cell(row=i, column=1, value=line)
+
+    output = io.BytesIO()
+    wb.save(output)
+    output.seek(0)
+    return StreamingResponse(output,
+        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        headers={"Content-Disposition": "attachment; filename=Gross_Revision_Template.xlsx"})
+
+@app.post("/api/gross-revision/upload")
+async def upload_gross_revision(file: UploadFile = File(...), password: str = Form("")):
+    """Upload Gross Revision: update existing site Gross or add new sites. Requires password."""
+    if password != get_upload_password():
+        raise HTTPException(403, "Invalid password.")
+    import openpyxl
+
+    contents = await file.read()
+    wb = openpyxl.load_workbook(io.BytesIO(contents))
+    ws = wb.active
+
+    # Find columns by header
+    header_row = [str(ws.cell(1, c).value or '').strip().lower() for c in range(1, ws.max_column + 1)]
+    def find_col(names):
+        for n in names:
+            if n.lower() in header_row:
+                return header_row.index(n.lower()) + 1
+        return None
+
+    col_entity = find_col(['entity', 'mile'])
+    col_site = find_col(['site code', 'site_code', 'site codes'])
+    col_state = find_col(['state'])
+    col_city = find_col(['city'])
+    col_bt = find_col(['short bt', 'short_bt'])
+    col_mw_cat = find_col(['mw category', 'minimum wage category', 'mw_category'])
+    col_mw_zone = find_col(['mw zone', 'minimum wage zone', 'mw_zone'])
+    col_weekly = find_col(['weekly hours', 'state weekly working hours', 'weekly_hours'])
+    col_daily = find_col(['daily hours', 'state daily working hours', 'daily_hours'])
+    col_mw = find_col(['minimum wage', 'mw', 'min wage'])
+    col_0yr = find_col(['0 year', '0year', '0 yr', '0yr'])
+    col_1yr = find_col(['1 year', '1year', '1 yr', '1yr'])
+    col_2yr = find_col(['2 year', '2year', '2 yr', '2yr'])
+    col_3yr = find_col(['3 year', '3year', '3 yr', '3yr'])
+    col_4yr = find_col(['4 year', '4year', '4 yr', '4yr'])
+
+    if not col_entity or not col_site or not col_bt or not col_0yr:
+        raise HTTPException(400, "Missing required columns: Entity, Site Code, Short BT, 0 Year")
+
+    def to_float(v):
+        try: return float(v) if v else 0
+        except: return 0
+
+    # Build existing card lookup
+    all_cards = db.list_wage_cards()
+    existing = {}
+    for card in all_cards:
+        k = (card.get('entity',''), card.get('site_codes',''), card.get('short_bt',''), card.get('tenure_years',0))
+        existing[k] = card
+
+    updated = 0
+    created = 0
+    errors = []
+    start_row = 2
+    # Skip row 2 if it looks like notes (check if first cell has 'required' or similar)
+    r2_val = str(ws.cell(2, 1).value or '').strip().lower()
+    if r2_val in ('required', 'new site only', ''):
+        start_row = 3
+
+    for row_idx in range(start_row, ws.max_row + 1):
+        entity = str(ws.cell(row_idx, col_entity).value or '').strip()
+        site = str(ws.cell(row_idx, col_site).value or '').strip()
+        bt = str(ws.cell(row_idx, col_bt).value or '').strip()
+        if not entity or not site or not bt:
+            continue
+
+        gross_rates = {
+            0: to_float(ws.cell(row_idx, col_0yr).value) if col_0yr else 0,
+            1: to_float(ws.cell(row_idx, col_1yr).value) if col_1yr else 0,
+            2: to_float(ws.cell(row_idx, col_2yr).value) if col_2yr else 0,
+            3: to_float(ws.cell(row_idx, col_3yr).value) if col_3yr else 0,
+            4: to_float(ws.cell(row_idx, col_4yr).value) if col_4yr else 0,
+        }
+
+        for tenure_yr in range(5):
+            gross = gross_rates.get(tenure_yr, 0)
+            if not gross:
+                continue
+            key = (entity, site, bt, tenure_yr)
+
+            if key in existing:
+                # UPDATE existing card with new Gross
+                card = existing[key]
+                state = card.get('state', '')
+                mw = card.get('minimum_wage', 0)
+                weekly = card.get('weekly_hours', 45)
+                daily = card.get('daily_hours', 9)
+                is_mh_wb = state in ('MH', 'WB')
+                split = engine.auto_split_for_mw(gross, mw, state, is_mh_wb)
+                wage_input = WageInput(
+                    state=state, city=card.get('city',''), site_code=site,
+                    entity=entity, mw_zone=card.get('mw_zone',''),
+                    region=card.get('region',''), mw_category=card.get('mw_category',''),
+                    business_title=bt, short_bt=bt, weekly_hours=weekly,
+                    daily_hours=daily, minimum_wage=mw,
+                    mw_effective_date=card.get('mw_effective_date',''),
+                    basic=split['basic'], flexi=split['flexi'], lta=split['lta'],
+                    hra=split['hra'], conveyance=split['conveyance'],
+                    attendance_incentive=card.get('attendance_incentive', 0),
+                    tenure_years=tenure_yr,
+                )
+                result = engine.calculate(wage_input, get_ptax_slabs(state), get_lwf_config(state))
+                card.update({
+                    "basic": split["basic"], "flexi": split["flexi"], "lta": split["lta"],
+                    "hra": split["hra"], "conveyance": split["conveyance"], "gross": result.gross,
+                    "pf_employee": result.pf_employee, "esic_employee": result.esic_employee,
+                    "gross_deductions": result.gross_deductions, "net_salary": result.net_salary,
+                    "pf_employer": result.pf_employer, "esic_employer": result.esic_employer,
+                    "ctc": result.ctc, "ot_default": result.ot_default,
+                    "per_hour_ot_total": result.per_hour_ot_total, "nsa": result.nsa,
+                    "attendance_incentive": result.attendance_incentive,
+                    "total_remuneration": result.total_remuneration,
+                    "included_wages": result.included_wages, "excluded_wages": result.excluded_wages,
+                    "cap_50_amount": result.cap_50_amount, "cap_50_met": result.cap_50_met,
+                    "mw_compliant": result.mw_compliant, "hol_wage": result.hol_wage,
+                    "included_pct": round(result.included_pct, 4),
+                })
+                db.put_wage_card(card, skip_save=True)
+                updated += 1
+            else:
+                # CREATE new card
+                state = str(ws.cell(row_idx, col_state).value or '').strip() if col_state else ''
+                city = str(ws.cell(row_idx, col_city).value or '').strip() if col_city else ''
+                mw_cat = str(ws.cell(row_idx, col_mw_cat).value or '').strip() if col_mw_cat else ''
+                mw_zone = str(ws.cell(row_idx, col_mw_zone).value or '').strip() if col_mw_zone else ''
+                weekly = to_float(ws.cell(row_idx, col_weekly).value) if col_weekly else 45
+                daily = to_float(ws.cell(row_idx, col_daily).value) if col_daily else 9
+                mw = to_float(ws.cell(row_idx, col_mw).value) if col_mw else 0
+                if not weekly: weekly = 45
+                if not daily: daily = 9
+                if not mw_cat:
+                    mw_cat = 'Semi Skilled' if 'associate' in bt.lower() else 'Skilled'
+                if not state:
+                    errors.append(f"Row {row_idx}: New site {site} missing State")
+                    continue
+
+                is_mh_wb = state in ('MH', 'WB')
+                split = engine.auto_split_for_mw(gross, mw, state, is_mh_wb)
+                wage_input = WageInput(
+                    state=state, city=city, site_code=site,
+                    entity=entity, mw_zone=mw_zone,
+                    region='', mw_category=mw_cat,
+                    business_title=bt, short_bt=bt, weekly_hours=weekly,
+                    daily_hours=daily, minimum_wage=mw,
+                    mw_effective_date='',
+                    basic=split['basic'], flexi=split['flexi'], lta=split['lta'],
+                    hra=split['hra'], conveyance=split['conveyance'],
+                    attendance_incentive=0, tenure_years=tenure_yr,
+                )
+                result = engine.calculate(wage_input, get_ptax_slabs(state), get_lwf_config(state))
+                import uuid as _uuid
+                card_id = str(_uuid.uuid4())
+                new_card = {
+                    "id": card_id, "entity": entity, "state": state, "state_code": state,
+                    "city": city, "node": "", "level": "",
+                    "mw_zone": mw_zone, "region": "",
+                    "mw_category": mw_cat, "business_title": bt, "short_bt": bt,
+                    "site_codes": site, "tenure_years": tenure_yr,
+                    "weekly_hours": weekly, "daily_hours": daily,
+                    "monthly_ot_limit": None, "minimum_wage": mw,
+                    "mw_effective_date": "",
+                    "basic": split["basic"], "flexi": split["flexi"], "lta": split["lta"],
+                    "hra": split["hra"], "conveyance": split["conveyance"], "gross": result.gross,
+                    "pf_employee": result.pf_employee, "esic_employee": result.esic_employee,
+                    "gross_deductions": result.gross_deductions, "net_salary": result.net_salary,
+                    "pf_employer": result.pf_employer, "esic_employer": result.esic_employer,
+                    "lwf_employee": "As applicable", "lwf_employer": "As applicable",
+                    "ctc": result.ctc, "ot_default": result.ot_default,
+                    "per_hour_ot_total": result.per_hour_ot_total,
+                    "nsa": 0, "attendance_incentive": 0,
+                    "total_remuneration": result.total_remuneration,
+                    "included_wages": result.included_wages, "excluded_wages": result.excluded_wages,
+                    "cap_50_amount": result.cap_50_amount, "cap_50_met": result.cap_50_met,
+                    "mw_compliant": result.mw_compliant, "hol_wage": result.hol_wage,
+                    "included_pct": round(result.included_pct, 4),
+                    "old_ot": 0, "old_hol": 0, "bal_pay_ot": 0, "bal_pay_hol": 0,
+                }
+                db.put_wage_card(new_card, skip_save=True)
+                existing[key] = new_card
+                created += 1
+
+    # Post-processing: parity, PT regen, depositories
+    try:
+        all_for_parity = db.list_wage_cards()
+        parity_updated = enforce_parity(all_for_parity, engine, get_ptax_slabs, get_lwf_config)
+    except:
+        parity_updated = 0
+
+    # Regenerate PT cards
+    all_after = db.list_wage_cards()
+    for c in all_after:
+        if c.get("is_pt"):
+            del db._memory_store["wage_cards"][c["id"]]
+    all_non_pt = db.list_wage_cards()
+    pt_cards = generate_pt_cards(all_non_pt, engine, get_ptax_slabs, get_lwf_config)
+    for pc in pt_cards:
+        db.put_wage_card(pc, skip_save=True)
+
+    # Apply depositories
+    apply_ai_depository_to_cards()
+    apply_old_ot_hol_depository_to_cards()
+
+    db.save()
+    save_audit_entry("GROSS_REVISION", filename=file.filename,
+                     details=f"Updated {updated}, Created {created} cards, {parity_updated} parity, {len(errors)} errors")
+
+    return {
+        "status": "completed",
+        "updated": updated,
+        "created": created,
+        "parity_adjustments": parity_updated,
+        "errors_count": len(errors),
+        "errors": errors[:20]
+    }
 
 
 @app.get("/api/revision-template/download")

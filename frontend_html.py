@@ -55,12 +55,14 @@ tr:nth-child(even){background:#f8f9fa}
 <div style="display:flex;align-items:center;gap:12px">
 <button class="btn btn-s" onclick="document.getElementById('upload-file').click()" style="font-size:12px;padding:6px 12px">📤 Full Template</button>
 <button class="btn btn-s" onclick="document.getElementById('revision-file').click()" style="font-size:12px;padding:6px 12px;background:#fff8e1;border:1px solid #ff9900">🔄 MW Revision</button>
+<button class="btn btn-s" onclick="document.getElementById('gross-rev-file').click()" style="font-size:12px;padding:6px 12px;background:#e8f5e9;border:1px solid #4caf50">📈 Gross Revision</button>
 <a href="/api/revision-template/download" class="btn btn-s" style="font-size:11px;padding:5px 10px;text-decoration:none;color:#545b64">📋 Template</a>
 <span id="upload-status" style="font-size:12px"></span>
 </div>
 <input type="file" id="upload-file" accept=".xlsx,.xls" style="display:none" onchange="uploadFile(this,'full')">
 <input type="file" id="revision-file" accept=".xlsx,.xls" style="display:none" onchange="uploadFile(this,'revision')">
-<span style="font-size:11px;color:#888">📤 Full: Replace all | 🔄 Revision: Update MW only | <a href="#" onclick="changePassword()" style="color:#545b64">🔒 Change Password</a></span>
+<input type="file" id="gross-rev-file" accept=".xlsx,.xls" style="display:none" onchange="uploadFile(this,'gross')">
+<span style="font-size:11px;color:#888">📤 Full: Replace all | 🔄 MW Revision | 📈 Gross Revision: Add/Update sites | <a href="/api/gross-revision-template/download" style="color:#4caf50">📋 Gross Template</a> | <a href="#" onclick="changePassword()" style="color:#545b64">🔒 Change Password</a></span>
 </div>
 
 <!-- STATS -->
@@ -161,12 +163,12 @@ async function uploadFile(input,mode){
   const formData=new FormData();
   formData.append('file',file);
   formData.append('password',pwd);
-  const url=mode==='revision'?'/api/upload-revision':'/api/upload-wage-cards';
+  const url=mode==='revision'?'/api/upload-revision':mode==='gross'?'/api/gross-revision/upload':'/api/upload-wage-cards';
   try{
     const r=await fetch(url,{method:'POST',body:formData});
     const d=await r.json();
     if(r.ok){
-      const msg=mode==='revision'?`🔄 ${d.cards_updated} cards updated (MW revision)`:`✅ ${d.imported} cards imported`;
+      const msg=mode==='revision'?`🔄 ${d.cards_updated} cards updated (MW revision)`:mode==='gross'?`📈 Updated ${d.updated}, Created ${d.created} cards (Gross revision)`:`✅ ${d.imported} cards imported`;
       status.innerHTML=`<span style="color:#1e7e34">${msg}</span>`;
       loadCards();
       loadAudit();
@@ -356,16 +358,15 @@ async function submitPtax(input){
   input.value='';
 }
 function uploadAiDep(){
-  const pwd=prompt('Enter password to update AI Depository:');
-  if(!pwd)return;
-  window._aiDepPwd=pwd;
   document.getElementById('ai-dep-file').click();
 }
 async function submitAiDep(input){
   const file=input.files[0];if(!file)return;
+  const pwd=prompt('Enter password to update AI Depository:');
+  if(!pwd){input.value='';return;}
   const formData=new FormData();
   formData.append('file',file);
-  formData.append('password',window._aiDepPwd||'');
+  formData.append('password',pwd);
   const r=await fetch('/api/ai-depository/upload',{method:'POST',body:formData});
   const d=await r.json();
   if(r.ok){alert('✅ AI Depository updated: '+d.entries+' entries, '+d.cards_updated+' cards updated');}
@@ -374,16 +375,15 @@ async function submitAiDep(input){
   loadData();
 }
 function uploadOtHolDep(){
-  const pwd=prompt('Enter password to update Old OT/Hol Depository:');
-  if(!pwd)return;
-  window._otHolDepPwd=pwd;
   document.getElementById('ot-hol-dep-file').click();
 }
 async function submitOtHolDep(input){
   const file=input.files[0];if(!file)return;
+  const pwd=prompt('Enter password to update Old OT/Hol Depository:');
+  if(!pwd){input.value='';return;}
   const formData=new FormData();
   formData.append('file',file);
-  formData.append('password',window._otHolDepPwd||'');
+  formData.append('password',pwd);
   const r=await fetch('/api/old-ot-hol-depository/upload',{method:'POST',body:formData});
   const d=await r.json();
   if(r.ok){alert('✅ Old OT/Hol Depository updated: '+d.entries+' entries, '+d.cards_updated+' cards updated');}
