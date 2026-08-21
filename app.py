@@ -1374,7 +1374,7 @@ async def upload_gross_revision(file: UploadFile = File(...), password: str = Fo
         raise HTTPException(400, "Missing required columns: Entity, Site Code, Short BT, 0 Year")
 
     def to_float(v):
-        try: return float(v) if v else 0
+        try: return float(str(v).replace(',','')) if v else 0
         except: return 0
 
     # Build existing card lookup
@@ -1448,7 +1448,8 @@ async def upload_gross_revision(file: UploadFile = File(...), password: str = Fo
                     "total_remuneration": result.total_remuneration,
                     "included_wages": result.included_wages, "excluded_wages": result.excluded_wages,
                     "cap_50_amount": result.cap_50_amount, "cap_50_met": result.cap_50_met,
-                    "mw_compliant": result.mw_compliant, "hol_wage": result.hol_wage,
+                    "mw_compliant": result.mw_compliant,
+                    "hol_wage": round((result.included_wages * 12 / (52 * weekly)) * daily) if weekly > 0 else 0,
                     "included_pct": round(result.included_pct, 4),
                 })
                 db.put_wage_card(card, skip_save=True)
@@ -1507,7 +1508,8 @@ async def upload_gross_revision(file: UploadFile = File(...), password: str = Fo
                     "total_remuneration": result.total_remuneration,
                     "included_wages": result.included_wages, "excluded_wages": result.excluded_wages,
                     "cap_50_amount": result.cap_50_amount, "cap_50_met": result.cap_50_met,
-                    "mw_compliant": result.mw_compliant, "hol_wage": result.hol_wage,
+                    "mw_compliant": result.mw_compliant,
+                    "hol_wage": round((result.included_wages * 12 / (52 * weekly)) * daily) if weekly > 0 else 0,
                     "included_pct": round(result.included_pct, 4),
                     "old_ot": 0, "old_hol": 0, "bal_pay_ot": 0, "bal_pay_hol": 0,
                 }
